@@ -1,0 +1,33 @@
+/* ===========================================================
+   LUX CHRISTI DARK THEME
+   =========================================================== */
+
+[data-theme="dark"] {
+
+    --color-background: #0F172A;
+
+    --color-surface: #1E293B;
+
+    --color-text: #F8FAFC;
+
+    --color-text-light: #CBD5E1;
+
+    --color-border: #334155;
+
+    --color-primary: #60A5FA;
+
+    --color-primary-dark: #3B82F6;
+
+    --color-primary-light: #1E3A8A;
+
+    --color-heading: #F8FAFC;
+
+    --color-muted: #CBD5E1;
+
+    --color-card-bg: #1E293B;
+
+    --color-card-text: #F8FAFC;
+
+    --color-card-border: #334155;
+
+}

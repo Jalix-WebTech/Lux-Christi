@@ -6,7 +6,8 @@ This stylesheet contains common styles that apply to the
 whole website. It defines brand colors, resets browser default
 behavior, and sets up basic typography and layout helpers.
 =============================================================== */
-
+@import url("variables.css");
+@import url("dark-theme.css");
 :root {
     /* Reusable color values used across many stylesheets. */
     --white: #ffffff;
@@ -19,6 +20,11 @@ behavior, and sets up basic typography and layout helpers.
     --surface: #ffffff;
     --border: #e2e8f0;
     --shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+    --color-heading: var(--color-text);
+    --color-muted: var(--color-text-light);
+    --color-card-bg: var(--color-surface);
+    --color-card-text: var(--color-text);
+    --color-card-border: var(--color-border);
 }
 
 /* Make width calculations easier for all elements. */
@@ -29,17 +35,25 @@ behavior, and sets up basic typography and layout helpers.
 /* Smooth scrolling when the page jumps to sections. */
 html {
     scroll-behavior: smooth;
+     transition:
+        background .35s ease,
+        color .35s ease;
 }
 
 /* Base page styles. */
 body {
-    margin: 0;
-    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: var(--background);
-    color: var(--text);
-    min-height: 100vh;
-}
 
+    font-family: var(--font-family);
+
+    background: var(--color-background);
+
+    color: var(--color-text);
+
+    transition:
+        background 0.35s ease,
+        color 0.35s ease;
+
+}
 /* Images should scale with their container. */
 img {
     max-width: 100%;

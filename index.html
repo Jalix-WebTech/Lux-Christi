@@ -92,6 +92,15 @@
             <a href="#" class="login-btn"> Login </a>
 
             <a href="#" class="register-btn"> Register </a>
+
+            <button
+    id="theme-toggle"
+    class="theme-toggle"
+    aria-label="Toggle dark mode"
+    title="Toggle dark mode"
+>
+    <i data-lucide="moon"></i>
+</button>
           </div>
         </div>
       </nav>
@@ -312,5 +321,14 @@
         window.location.replace("splash.html");
       }
     </script>
+
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
+
+<script src="js/navbar.js"></script>
+<script src="js/theme.js"></script>
   </body>
 </html>
