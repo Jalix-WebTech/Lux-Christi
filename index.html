@@ -33,7 +33,77 @@
   </head>
 
   <body>
-<!-- ===================================
+    <!-- ===================================
+     LUX CHRISTI HEADER
+==================================== -->
+
+    <!-- The header contains the logo and navigation menu. It is sticky so it stays at the top of the page. -->
+    <header class="header">
+      <nav class="navbar">
+        <!-- Brand Logo -->
+
+        <a href="index.html" class="logo">
+          <img src="assets/logo.png" alt="Lux Christi Logo" />
+
+          <span> Lux Christi </span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <!-- This button is visible only on small screens. It toggles the mobile navigation menu. -->
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Navigation Links -->
+
+        <div class="nav-menu" id="navMenu">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html" class="active"> Home </a>
+            </li>
+
+            <li>
+              <a href="#"> Quiz </a>
+            </li>
+
+            <li>
+              <a href="#"> Competitions </a>
+            </li>
+
+            <li>
+              <a href="#"> About </a>
+            </li>
+
+            <li>
+              <a href="#"> Contact </a>
+            </li>
+          </ul>
+
+          <!-- Authentication Buttons -->
+          <!-- These buttons let users sign in or register. They are placeholders for future login/register pages. -->
+          <div class="nav-buttons">
+            <a href="#" class="login-btn"> Login </a>
+
+            <a href="#" class="register-btn"> Register </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ===================================
+     MAIN CONTENT
+==================================== -->
+
+    <!-- The page content lives inside <main>. This area shows the hero section for the homepage. -->
+    <main>
+     <!-- ===================================
      HERO SECTION
 ==================================== -->
 
@@ -225,42 +295,6 @@
 
 
 </section>
-
-    <!-- ===================================
-     MAIN CONTENT
-==================================== -->
-
-    <!-- The page content lives inside <main>. This area shows the hero section for the homepage. -->
-    <main>
-      <!-- HERO SECTION -->
-
-      <section class="hero">
-        <div class="hero-container">
-          <!-- Text Content -->
-
-          <div class="hero-content">
-            <h1>Illuminate Your Faith Through Knowledge</h1>
-
-            <p>
-              Lux Christi helps Catholics learn, compete, and grow spiritually
-              through interactive quizzes, competitions, and faith-based
-              learning.
-            </p>
-
-            <div class="hero-buttons">
-              <a href="#" class="primary-btn"> Get Started </a>
-
-              <a href="#" class="secondary-btn"> Learn More </a>
-            </div>
-          </div>
-
-          <!-- Illustration Area -->
-
-          <div class="hero-image">
-            <img src="assets/logo.jpg" alt="Catholic learning illustration" />
-          </div>
-        </div>
-      </section>
     </main>
 
     <script src="js/navbar.js"></script>
