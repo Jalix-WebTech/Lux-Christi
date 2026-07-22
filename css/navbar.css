@@ -1,0 +1,374 @@
+/* ==========================================
+   LUX CHRISTI NAVIGATION SYSTEM
+========================================== */
+
+/*
+   This stylesheet controls the top navigation bar,
+   including desktop layout and mobile menu behavior.
+*/
+
+/* Header Container */
+
+.header {
+
+    background:white;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    box-shadow:
+    0 3px 15px rgba(0,0,0,0.08);
+
+}
+
+
+
+/* Navigation Wrapper */
+
+.navbar {
+
+
+    width:min(90%,1200px);
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:1rem 0;
+
+
+}
+
+
+
+
+/* ==========================================
+   LOGO
+========================================== */
+
+
+.logo {
+
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.7rem;
+
+    color:var(--primary-blue);
+
+    font-size:1.4rem;
+
+    font-weight:700;
+
+
+}
+
+
+
+.logo img {
+
+
+    width:45px;
+
+    height:45px;
+
+    object-fit:contain;
+
+
+}
+
+
+
+
+/* ==========================================
+   NAV MENU
+========================================== */
+
+
+.nav-menu {
+
+
+    display:flex;
+
+    align-items:center;
+
+    gap:2rem;
+
+
+}
+
+
+
+.nav-links {
+
+
+    display:flex;
+
+    gap:2rem;
+
+    list-style:none;
+
+
+}
+
+
+
+.nav-links a {
+
+
+    color:var(--text);
+
+    font-weight:500;
+
+    position:relative;
+
+    transition:.3s;
+
+
+}
+
+
+
+/* Hover Animation */
+
+.nav-links a::after {
+
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-8px;
+
+    left:0;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--primary-blue);
+
+    transition:.3s;
+
+
+}
+
+
+
+.nav-links a:hover::after,
+.nav-links .active::after {
+
+
+    width:100%;
+
+
+}
+
+
+
+
+.nav-links a:hover {
+
+
+    color:var(--primary-blue);
+
+
+}
+
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+
+.nav-buttons {
+
+
+    display:flex;
+
+    gap:1rem;
+
+
+}
+
+
+
+.login-btn {
+
+
+    color:var(--primary-blue);
+
+    padding:.7rem 1.2rem;
+
+
+}
+
+
+
+.register-btn {
+
+
+    background:var(--primary-blue);
+
+    color:white;
+
+    padding:.7rem 1.4rem;
+
+    border-radius:30px;
+
+    transition:.3s;
+
+
+}
+
+
+
+.register-btn:hover {
+
+
+    background:var(--dark-blue);
+
+
+}
+
+
+
+/* ==========================================
+   MOBILE MENU BUTTON
+========================================== */
+
+
+.menu-toggle {
+
+
+    display:none;
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+
+
+.menu-toggle span {
+
+
+    display:block;
+
+    width:28px;
+
+    height:3px;
+
+    background:var(--primary-blue);
+
+    margin:5px;
+
+    transition:.3s;
+
+
+}
+
+
+
+/* ==========================================
+   MOBILE RESPONSIVENESS
+========================================== */
+
+
+@media(max-width:850px){
+
+
+
+.menu-toggle{
+
+
+    display:block;
+
+
+}
+
+
+
+.nav-menu{
+
+
+    position:absolute;
+
+    top:75px;
+
+    left:0;
+
+    width:100%;
+
+    background:white;
+
+    flex-direction:column;
+
+    padding:2rem;
+
+    display:none;
+
+
+}
+
+
+
+.nav-menu.active{
+
+
+    display:flex;
+
+
+}
+
+
+
+.nav-links{
+
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+
+
+.nav-buttons{
+
+
+    flex-direction:column;
+
+    width:100%;
+
+    text-align:center;
+
+
+}
+
+
+
+.register-btn{
+
+
+    display:block;
+
+
+}
+
+
+
+}
