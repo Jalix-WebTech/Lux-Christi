@@ -38,9 +38,8 @@
     display:flex;
 
     align-items:center;
-
     justify-content:space-between;
-
+    gap:2rem;
     padding:1rem 0;
 
 
@@ -98,10 +97,10 @@
 
 
     display:flex;
-
     align-items:center;
-
+    justify-content:flex-start;
     gap:2rem;
+    flex:1;
 
 
 }
@@ -112,10 +111,11 @@
 
 
     display:flex;
-
+    align-items:center;
     gap:2rem;
-
     list-style:none;
+    margin:0;
+    padding:0;
 
 
 }
@@ -338,10 +338,12 @@
 
 .nav-links{
 
-
+    width: 100%;
     flex-direction:column;
-
+    display:flex;
+    align-items:flex-start;
     text-align:center;
+    padding-left:20px;
 
 }
 
@@ -390,7 +392,7 @@
     color:var(--color-primary);
     display:flex;
     align-items:center;
-    justify-content:center;
+    justify-content:left;
     gap:0.45rem;
     cursor:pointer;
     transition:all var(--transition-normal);
@@ -401,6 +403,9 @@
 
 .theme-toggle-label {
     font-size:0.9rem;
+    line-height:1;
+    min-width:74px;
+    text-align:left;
 }
 
 .theme-status-dot {
@@ -410,6 +415,11 @@
     background:var(--color-text-light);
     display:inline-block;
     transition:all var(--transition-normal);
+    flex-shrink:0;
+}
+
+.theme-status-dot.active {
+    background:#22c55e;
 }
 
 [data-theme="dark"] .theme-toggle {
@@ -417,9 +427,6 @@
     color:var(--color-primary-dark);
 }
 
-[data-theme="dark"] .theme-status-dot {
-    background:#22c55e;
-}
 
 .theme-toggle:hover{
 
