@@ -33,74 +33,149 @@
   </head>
 
   <body>
-    <!-- ===================================
-     LUX CHRISTI HEADER
-==================================== -->
+    <!-- ==========================================================
+     LUX CHRISTI • APPLICATION HEADER
+     Purpose:
+     - Brand Identity
+     - Primary Navigation
+     - Theme Toggle
+     - Authentication
+     - Mobile Navigation
+=========================================================== -->
 
-    <!-- The header contains the logo and navigation menu. It is sticky so it stays at the top of the page. -->
     <header class="header">
       <nav class="navbar">
-        <!-- Brand Logo -->
+        <!-- ======================
+             BRAND LOGO
+        ======================= -->
 
         <a href="index.html" class="logo">
           <img src="assets/logo.jpg" alt="Lux Christi Logo" />
 
-          <span> Lux Christi </span>
+          <span>Lux Christi</span>
         </a>
 
-        <!-- Mobile Menu Button -->
-        <!-- This button is visible only on small screens. It toggles the mobile navigation menu. -->
+        <!-- ======================
+             MOBILE MENU BUTTON
+        ======================= -->
+
         <button
-          class="menu-toggle"
           id="menuToggle"
+          class="menu-toggle"
           aria-label="Open navigation menu"
           aria-expanded="false"
+          aria-controls="navMenu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <!-- Menu Icon -->
+
+          <i data-lucide="menu" class="menu-icon"></i>
+
+          <!-- Close Icon -->
+
+          <i data-lucide="x" class="close-icon"></i>
         </button>
 
-        <!-- Navigation Links -->
+        <!-- ======================
+             NAVIGATION MENU
+        ======================= -->
 
         <div class="nav-menu" id="navMenu">
           <ul class="nav-links">
             <li>
-              <a href="index.html" class="active"> Home </a>
+              <a href="index.html" class="active">
+                <i data-lucide="house"></i>
+
+                <span>Home</span>
+              </a>
             </li>
 
             <li>
-              <a href="#"> Quiz </a>
+              <a href="#">
+                <i data-lucide="book-open"></i>
+
+                <span>Learn</span>
+              </a>
             </li>
 
             <li>
-              <a href="#"> Competitions </a>
+              <a href="#">
+                <i data-lucide="circle-help"></i>
+
+                <span>Quiz</span>
+              </a>
+            </li>
+
+            <!-- <li>
+
+                    <a href="#">
+
+                        <i data-lucide="trophy"></i>
+
+                        <span>Competitions</span>
+
+                    </a>
+
+                </li> -->
+
+            <li>
+              <a href="#">
+                <i data-lucide="users"></i>
+
+                <span>Community</span>
+              </a>
             </li>
 
             <li>
-              <a href="#"> About </a>
+              <a href="#">
+                <i data-lucide="info"></i>
+
+                <span>About</span>
+              </a>
             </li>
 
-            <li>
-              <a href="#"> Contact </a>
-            </li>
+            <!-- 
+                <li>
+
+                    <a href="#">
+
+                        <i data-lucide="phone"></i>
+
+                        <span>Contact</span>
+
+                    </a>
+
+                </li> -->
           </ul>
 
-          <!-- Authentication Buttons -->
-          <!-- These buttons let users sign in or register. They are placeholders for future login/register pages. -->
-          <div class="nav-buttons">
-            <a href="#" class="login-btn"> Login </a>
+          <!-- ======================
+                 ACTION BUTTONS
+            ======================= -->
 
-            <a href="#" class="register-btn"> Register </a>
+          <div class="nav-buttons">
+            
+            <a href="#" class="login-btn">
+              <i data-lucide="log-in"></i>
+
+              <span>Login</span>
+            </a>
+
+            <a href="#" class="register-btn">
+              <i data-lucide="user-plus"></i>
+
+              <span>Register</span>
+            </a>
 
             <button
-    id="theme-toggle"
-    class="theme-toggle"
-    aria-label="Toggle dark mode"
-    title="Toggle dark mode"
->
-    <i data-lucide="moon"></i>
-</button>
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Toggle dark mode"
+              title="Toggle dark mode"
+            >
+              <span class="theme-toggle-label"></span>
+              <i data-lucide="moon"></i>
+              <span class="theme-status-dot" aria-hidden="true"></span>
+            </button>
+
           </div>
         </div>
       </nav>
@@ -112,198 +187,77 @@
 
     <!-- The page content lives inside <main>. This area shows the hero section for the homepage. -->
     <main>
-     <!-- ===================================
+      <!-- ===================================
      HERO SECTION
 ==================================== -->
 
+      <section class="hero">
+        <div class="hero-container">
+          <!-- Hero Text -->
 
-<section class="hero">
+          <div class="hero-content">
+            <span class="hero-badge"> Catholic Learning Platform </span>
 
-
-    <div class="hero-container">
-
-
-
-        <!-- Hero Text -->
-
-        <div class="hero-content">
-
-
-            <span class="hero-badge">
-
-                Catholic Learning Platform
-
-            </span>
-
-
-
-            <h1>
-
-                Illuminate Your Faith
-                Through Knowledge
-
-            </h1>
-
-
+            <h1>Illuminate Your Faith Through Knowledge</h1>
 
             <p>
-
-                Lux Christi is a modern digital platform
-                where Catholics learn, compete,
-                and grow through interactive quizzes,
-                competitions, and faith-based learning.
-
+              Lux Christi is a modern digital platform where Catholics learn,
+              compete, and grow through interactive quizzes, competitions, and
+              faith-based learning.
             </p>
-
-
 
             <!-- Action Buttons -->
 
             <div class="hero-buttons">
+              <a href="#" class="primary-btn"> Start Learning </a>
 
-
-                <a 
-                href="#"
-                class="primary-btn">
-
-                    Start Learning
-
-                </a>
-
-
-
-                <a 
-                href="#"
-                class="secondary-btn">
-
-                    Explore Competitions
-
-                </a>
-
-
+              <a href="#" class="secondary-btn"> Explore Competitions </a>
             </div>
-
-
 
             <!-- Trust Indicators -->
 
-
             <div class="hero-trust">
+              <div>
+                ✓
 
+                <span> Faith Learning </span>
+              </div>
 
-                <div>
+              <div>
+                ✓
 
-                    ✓
+                <span> Global Competition </span>
+              </div>
 
-                    <span>
-                        Faith Learning
-                    </span>
+              <div>
+                ✓
 
-                </div>
-
-
-                <div>
-
-                    ✓
-
-                    <span>
-                        Global Competition
-                    </span>
-
-                </div>
-
-
-                <div>
-
-                    ✓
-
-                    <span>
-                        Knowledge Growth
-                    </span>
-
-                </div>
-
-
+                <span> Knowledge Growth </span>
+              </div>
             </div>
+          </div>
 
+          <!-- Hero Visual -->
 
-
-        </div>
-
-
-
-
-
-
-        <!-- Hero Visual -->
-
-
-        <div class="hero-image">
-
-
+          <div class="hero-image">
             <div class="dashboard-card">
+              <div class="card-header">Lux Christi Quiz</div>
 
+              <div class="question">Who founded the Catholic Church?</div>
 
-                <div class="card-header">
+              <div class="options">
+                <button>✅ Jesus Christ</button>
 
-                    Lux Christi Quiz
+                <button>Peter</button>
 
-                </div>
+                <button>Paul</button>
+              </div>
 
-
-
-                <div class="question">
-
-
-                    Who founded the Catholic Church?
-
-
-                </div>
-
-
-
-                <div class="options">
-
-
-                    <button>
-                       ✅ Jesus Christ
-                    </button>
-
-
-                    <button>
-                        Peter
-                    </button>
-
-
-                    <button>
-                        Paul
-                    </button>
-
-
-                </div>
-
-
-
-                <div class="score">
-
-
-                    Score: 950
-
-
-                </div>
-
-
+              <div class="score">Score: 950</div>
             </div>
-
-
+          </div>
         </div>
-
-
-
-    </div>
-
-
-</section>
+      </section>
     </main>
 
     <script src="js/navbar.js"></script>
@@ -322,13 +276,12 @@
       }
     </script>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
 
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-    lucide.createIcons();
-</script>
-
-<script src="js/navbar.js"></script>
-<script src="js/theme.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/theme.js"></script>
   </body>
 </html>
