@@ -1,0 +1,448 @@
+/* ==========================================================
+   LUX CHRISTI
+   PROMOTIONAL SHOWCASE
+   Version: 2.0
+   Responsive • Dark Mode Ready • Production Ready
+========================================================== */
+
+
+/* ===========================
+   SECTION
+=========================== */
+
+.showcase {
+
+    width: min(95%, 1600px);
+
+    margin: var(--space-20) auto;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: var(--radius-xl);
+
+    background: var(--color-surface);
+
+    box-shadow: var(--shadow-lg);
+
+}
+
+
+/* ===========================
+   SLIDER CONTAINER
+=========================== */
+
+.showcase-slider {
+
+    position: relative;
+
+    width: 100%;
+
+    /* Responsive height */
+    height: clamp(380px, 60vw, 720px);
+
+}
+
+
+/* ===========================
+   EACH SLIDE
+=========================== */
+
+.showcase-slide {
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+
+}
+
+
+.showcase-slide.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+/* ===========================
+   IMAGE
+=========================== */
+
+.showcase-slide img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    user-select: none;
+
+    pointer-events: none;
+
+    transition: transform 8s linear;
+
+}
+
+
+/* Slow premium zoom */
+
+.showcase-slide.active img {
+
+    transform: scale(1.05);
+
+}
+
+
+/* ===========================
+   OVERLAY
+=========================== */
+
+.showcase-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    padding: clamp(1.5rem, 5vw, 5rem);
+
+    background: linear-gradient(
+        90deg,
+        rgba(0,0,0,.70),
+        rgba(0,0,0,.35),
+        rgba(0,0,0,.05)
+    );
+
+    color: #ffffff;
+
+}
+
+
+/* Dark mode */
+
+[data-theme="dark"] .showcase-overlay {
+
+    background: linear-gradient(
+        90deg,
+        rgba(0,0,0,.82),
+        rgba(0,0,0,.50),
+        rgba(0,0,0,.15)
+    );
+
+}
+
+
+/* ===========================
+   TAG
+=========================== */
+
+.showcase-tag {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: .5rem 1rem;
+
+    margin-bottom: 1rem;
+
+    border-radius: var(--radius-pill);
+
+    background: var(--color-primary);
+
+    color: #fff;
+
+    font-size: .8rem;
+
+    font-weight: 600;
+
+}
+
+
+/* ===========================
+   TITLE
+=========================== */
+
+.showcase-overlay h2 {
+
+    max-width: 700px;
+
+    font-size: clamp(2rem, 5vw, 4.5rem);
+
+    line-height: 1.1;
+
+    margin-bottom: 1rem;
+
+}
+
+
+/* ===========================
+   DESCRIPTION
+=========================== */
+
+.showcase-overlay p {
+
+    max-width: 600px;
+
+    font-size: clamp(1rem, 2vw, 1.15rem);
+
+    line-height: 1.8;
+
+    margin-bottom: 2rem;
+
+}
+
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.showcase-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 1rem 2rem;
+
+    border-radius: var(--radius-pill);
+
+    background: var(--color-primary);
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: all var(--transition-normal);
+
+}
+
+
+.showcase-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: var(--shadow-md);
+
+}
+
+
+/* ===========================
+   ARROWS
+=========================== */
+
+.showcase-arrow {
+
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 52px;
+
+    height: 52px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    backdrop-filter: blur(12px);
+
+    background: rgba(255,255,255,.85);
+
+    color: var(--color-primary);
+
+    box-shadow: var(--shadow-sm);
+
+    transition: all var(--transition-normal);
+
+}
+
+
+.showcase-arrow:hover {
+
+    transform: translateY(-50%) scale(1.08);
+
+}
+
+
+.prev {
+
+    left: 1.5rem;
+
+}
+
+
+.next {
+
+    right: 1.5rem;
+
+}
+
+
+/* ===========================
+   DOTS
+=========================== */
+
+.showcase-dots {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 1.5rem;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: .75rem;
+
+}
+
+
+.dot {
+
+    width: 12px;
+
+    height: 12px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    background: rgba(255,255,255,.45);
+
+    transition: all .3s ease;
+
+}
+
+
+.dot.active {
+
+    width: 30px;
+
+    border-radius: 999px;
+
+    background: var(--color-primary);
+
+}
+
+
+/* ===========================
+   TABLET
+=========================== */
+
+@media (max-width: 992px) {
+
+    .showcase-slider {
+
+        height: 520px;
+
+    }
+
+}
+
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 768px) {
+
+    .showcase-slider {
+
+        height: 430px;
+
+    }
+
+    .showcase-overlay {
+
+        justify-content: flex-end;
+
+        text-align: center;
+
+        align-items: center;
+
+        padding: 2rem;
+
+    }
+
+    .showcase-overlay p {
+
+        max-width: 100%;
+
+    }
+
+    .showcase-arrow {
+
+        display: none;
+
+    }
+
+}
+
+
+/* ===========================
+   SMALL PHONES
+=========================== */
+
+@media (max-width: 480px) {
+
+    .showcase-slider {
+
+        height: 360px;
+
+    }
+
+    .showcase-overlay h2 {
+
+        font-size: 1.8rem;
+
+    }
+
+    .showcase-btn {
+
+        width: 100%;
+
+    }
+
+}

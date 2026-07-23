@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="css/navbar.css" />
 
     <link rel="stylesheet" href="css/hero.css" />
+
+    <link rel="stylesheet" href="css/showcase.css" />
   </head>
 
   <body>
@@ -261,6 +263,182 @@
       </section>
     </main>
 
+    <!-- ==========================================================
+     PLATFORM SHOWCASE
+     Auto-rotating promotional banners
+=========================================================== -->
+
+<section class="showcase" aria-label="Platform highlights">
+
+    <div class="showcase-slider" id="showcaseSlider">
+
+        <!-- Slide 1 -->
+
+        <article class="showcase-slide active">
+
+            <img
+                src="assets/logo.jpg"
+                alt="Lux Christi National Bible Quiz"
+                loading="lazy"
+            >
+
+            <div class="showcase-overlay">
+
+                <span class="showcase-tag">
+                    FEATURED EVENT
+                </span>
+
+                <h2>
+                    National Catholic Bible Quiz
+                </h2>
+
+                <p>
+
+                    Register today and compete with
+                    Catholics across the country.
+
+                </p>
+
+                <a href="#" class="showcase-btn">
+
+                    Learn More
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+
+
+
+        <!-- Slide 2 -->
+
+        <article class="showcase-slide">
+
+            <img
+                src="assets/logo.jpg"
+                alt="Catechism Competition"
+                loading="lazy"
+            >
+
+            <div class="showcase-overlay">
+
+                <span class="showcase-tag">
+
+                    NEW
+
+                </span>
+
+                <h2>
+
+                    Catechism Challenge
+
+                </h2>
+
+                <p>
+
+                    Build your knowledge while earning
+                    achievements.
+
+                </p>
+
+                <a href="#" class="showcase-btn">
+
+                    Join Now
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+
+
+
+        <!-- Slide 3 -->
+
+        <article class="showcase-slide">
+
+            <img
+                src="assets/logo.jpg"
+                alt="Daily Gospel Learning"
+                loading="lazy"
+            >
+
+            <div class="showcase-overlay">
+
+                <span class="showcase-tag">
+
+                    DAILY
+
+                </span>
+
+                <h2>
+
+                    Daily Gospel Learning
+
+                </h2>
+
+                <p>
+
+                    Grow spiritually with interactive
+                    daily lessons.
+
+                </p>
+
+                <a href="#" class="showcase-btn">
+
+                    Start Learning
+
+                </a>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+
+    <!-- Navigation -->
+
+    <button
+        class="showcase-arrow prev"
+        id="prevSlide"
+        aria-label="Previous slide">
+
+        &#10094;
+
+    </button>
+
+    <button
+        class="showcase-arrow next"
+        id="nextSlide"
+        aria-label="Next slide">
+
+        &#10095;
+
+    </button>
+
+
+
+    <!-- Indicators -->
+
+    <div class="showcase-dots" id="showcaseDots">
+
+        <button class="dot active"></button>
+
+        <button class="dot"></button>
+
+        <button class="dot"></button>
+
+    </div>
+
+</section>
+
     <script src="js/navbar.js"></script>
 
     <!-- Splash screen logic:
@@ -284,5 +462,6 @@
 
     <script src="js/navbar.js"></script>
     <script src="js/theme.js"></script>
+    <script src="js/showcase.js"></script>
   </body>
 </html>
