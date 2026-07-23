@@ -84,3 +84,13 @@ button {
     width: min(90%, 1200px);
     margin: 0 auto;
 }
+
+/* Prevent background scrolling when mobile nav is open */
+@media (max-width:850px) {
+    body.no-scroll {
+        position: fixed;
+        width: 100%;
+        overflow: hidden;
+        -webkit-overflow-scrolling: auto;
+    }
+}
