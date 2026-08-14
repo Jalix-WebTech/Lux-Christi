@@ -1,0 +1,984 @@
+<!doctype html>
+<html lang="en">
+  <!--
+    Lux Christi - Learn Page
+    -------------------------
+    Professional learning hub featuring:
+    - Learning categories and tracks
+    - Featured & recommended resources
+    - Search and filter functionality
+    - Progress tracking indicators
+    - Responsive grid layouts
+    - Full dark mode support
+  -->
+  <head>
+    <!-- Character Encoding -->
+    <meta charset="UTF-8" />
+
+    <!-- Responsive Viewport -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <!-- SEO Title & Description -->
+    <title>Learn | Lux Christi - Catholic Learning Resources</title>
+    <meta
+      name="description"
+      content="Explore Catholic learning resources, scripture courses, catechism studies, and more. Start your faith learning journey with Lux Christi."
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <!-- Learn Page Styles -->
+    <style>
+      /* ===== CSS VARIABLES ===== */
+      :root {
+        --section-padding-mobile: 24px 16px;
+        --section-padding-tablet: 32px 24px;
+        --section-padding-desktop: 48px 40px;
+      }
+
+      /* ===== MAIN LAYOUT ===== */
+      .learn-main {
+        min-height: calc(100vh - 80px);
+        background: var(--color-background);
+        padding-top: 20px;
+      }
+
+      /* ===== SECTION WRAPPER ===== */
+      .learn-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--section-padding-mobile);
+      }
+
+      @media (min-width: 640px) {
+        .learn-section {
+          padding: var(--section-padding-tablet);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .learn-section {
+          padding: var(--section-padding-desktop);
+        }
+      }
+
+      /* ===== HERO SECTION ===== */
+      .learn-hero {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary) 0%,
+          var(--color-primary-dark) 100%
+        );
+        color: var(--color-white);
+        border-radius: 16px;
+        padding: 40px 20px;
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      .learn-hero h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0 0 12px 0;
+        line-height: 1.2;
+      }
+
+      .learn-hero p {
+        font-size: 1rem;
+        margin: 0 0 24px 0;
+        opacity: 0.95;
+        line-height: 1.5;
+      }
+
+      .learn-hero-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      /* ===== SEARCH BAR ===== */
+      .search-box {
+        position: relative;
+        width: 100%;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 40px 12px 16px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        background: var(--color-background);
+        color: var(--color-text);
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      .search-input:focus {
+        box-shadow: 0 0 0 3px var(--color-primary-light);
+      }
+
+      .search-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--color-text-light);
+        pointer-events: none;
+        width: 18px;
+        height: 18px;
+      }
+
+      /* ===== FILTER BUTTONS ===== */
+      .filter-controls {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .filter-btn {
+        padding: 8px 16px;
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--color-white);
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .filter-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--color-white);
+      }
+
+      .filter-btn.active {
+        background: var(--color-white);
+        color: var(--color-primary);
+        border-color: var(--color-white);
+      }
+
+      @media (max-width: 640px) {
+        .learn-hero {
+          padding: 32px 16px;
+        }
+
+        .learn-hero h1 {
+          font-size: 1.6rem;
+        }
+
+        .learn-hero p {
+          font-size: 0.95rem;
+        }
+
+        .filter-controls {
+          flex-direction: column;
+        }
+
+        .filter-btn {
+          width: 100%;
+        }
+      }
+
+      /* ===== SECTION HEADER ===== */
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        gap: 16px;
+      }
+
+      .section-header h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--color-text);
+        margin: 0;
+      }
+
+      .view-all-link {
+        color: var(--color-primary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: opacity 0.3s ease;
+        white-space: nowrap;
+      }
+
+      .view-all-link:hover {
+        opacity: 0.8;
+      }
+
+      @media (max-width: 640px) {
+        .section-header {
+          margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+          font-size: 1.5rem;
+        }
+
+        .view-all-link {
+          font-size: 0.85rem;
+        }
+      }
+
+      /* ===== CARD GRID ===== */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+        margin-bottom: 48px;
+      }
+
+      @media (max-width: 768px) {
+        .card-grid {
+          grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+          gap: 16px;
+          margin-bottom: 32px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .card-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          margin-bottom: 24px;
+        }
+      }
+
+      /* ===== LEARNING CARD ===== */
+      .learning-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .learning-card:hover {
+        border-color: var(--color-primary);
+        box-shadow: 0 8px 20px rgba(21, 101, 192, 0.12);
+        transform: translateY(-2px);
+      }
+
+      /* ===== CARD IMAGE/HEADER ===== */
+      .card-header {
+        position: relative;
+        width: 100%;
+        height: 160px;
+        background: linear-gradient(
+          135deg,
+          var(--color-primary) 0%,
+          var(--color-secondary) 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-white);
+        font-size: 3rem;
+      }
+
+      .card-header.category-scripture {
+        background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+      }
+
+      .card-header.category-sacraments {
+        background: linear-gradient(135deg, #7b2cbf 0%, #5a189a 100%);
+      }
+
+      .card-header.category-catechism {
+        background: linear-gradient(135deg, #f77f00 0%, #d62828 100%);
+      }
+
+      .card-header.category-saints {
+        background: linear-gradient(135deg, #06a77d 0%, #028174 100%);
+      }
+
+      .card-header.category-morality {
+        background: linear-gradient(135deg, #e63946 0%, #a4161a 100%);
+      }
+
+      .card-header.category-prayers {
+        background: linear-gradient(135deg, #8338ec 0%, #3a86ff 100%);
+      }
+
+      /* ===== CARD CONTENT ===== */
+      .card-content {
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--color-text);
+        margin: 0 0 8px 0;
+        line-height: 1.3;
+      }
+
+      .card-description {
+        font-size: 0.9rem;
+        color: var(--color-text-light);
+        margin: 0 0 16px 0;
+        line-height: 1.4;
+        flex-grow: 1;
+      }
+
+      /* ===== CARD STATS ===== */
+      .card-stats {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: var(--color-text-light);
+        padding-top: 12px;
+        border-top: 1px solid var(--color-border);
+        margin-bottom: 16px;
+      }
+
+      .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .stat-item svg {
+        width: 14px;
+        height: 14px;
+        stroke-width: 2;
+      }
+
+      /* ===== CARD BUTTON ===== */
+      .card-btn {
+        width: 100%;
+        padding: 10px 16px;
+        background: var(--color-primary);
+        color: var(--color-white);
+        border: none;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .card-btn:hover {
+        background: var(--color-primary-dark);
+        box-shadow: 0 4px 12px rgba(21, 101, 192, 0.3);
+      }
+
+      .card-btn:focus {
+        box-shadow: 0 0 0 3px var(--color-primary-light);
+      }
+
+      .card-btn:active {
+        transform: scale(0.98);
+      }
+
+      /* ===== EMPTY STATE ===== */
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: var(--color-surface);
+        border: 2px dashed var(--color-border);
+        border-radius: 12px;
+        margin: 40px 0;
+      }
+
+      .empty-state-icon {
+        font-size: 4rem;
+        margin-bottom: 16px;
+      }
+
+      .empty-state h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--color-text);
+        margin: 0 0 8px 0;
+      }
+
+      .empty-state p {
+        font-size: 1rem;
+        color: var(--color-text-light);
+        margin: 0;
+      }
+
+      /* ===== FEATURED SECTION ===== */
+      .featured-banner {
+        background: linear-gradient(
+          135deg,
+          var(--color-secondary) 0%,
+          var(--color-primary) 100%
+        );
+        color: var(--color-white);
+        border-radius: 12px;
+        padding: 32px;
+        margin-bottom: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+      }
+
+      .featured-banner h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0 0 12px 0;
+      }
+
+      .featured-banner p {
+        font-size: 1rem;
+        margin: 0;
+        opacity: 0.95;
+        line-height: 1.5;
+      }
+
+      .featured-banner-btn {
+        flex-shrink: 0;
+        padding: 12px 24px;
+        background: var(--color-white);
+        color: var(--color-primary);
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+
+      .featured-banner-btn:hover {
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        .featured-banner {
+          flex-direction: column;
+          text-align: center;
+          padding: 28px 20px;
+          gap: 20px;
+        }
+
+        .featured-banner h3 {
+          font-size: 1.3rem;
+        }
+
+        .featured-banner-btn {
+          width: 100%;
+        }
+      }
+
+      /* ===== PROGRESS INDICATORS ===== */
+      .progress-bar {
+        height: 4px;
+        background: var(--color-border);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-top: 8px;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          var(--color-primary),
+          var(--color-secondary)
+        );
+        width: 35%;
+        border-radius: 2px;
+      }
+
+      /* ===== DARK MODE ===== */
+      [data-theme="dark"] .learn-hero {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary) 0%,
+          var(--color-primary-dark) 100%
+        );
+      }
+
+      [data-theme="dark"] .filter-btn {
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      [data-theme="dark"] .filter-btn:hover {
+        border-color: rgba(255, 255, 255, 0.6);
+      }
+
+      [data-theme="dark"] .learning-card:hover {
+        border-color: var(--color-primary);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+      LUX CHRISTI • APPLICATION HEADER
+    ========================================================== -->
+    <header class="header">
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.jpg" alt="Lux Christi Logo" />
+          <span>Lux Christi</span>
+        </a>
+
+        <button
+          id="menuToggle"
+          class="menu-toggle"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="navMenu"
+        >
+          <i data-lucide="menu" class="menu-icon"></i>
+          <i data-lucide="x" class="close-icon"></i>
+        </button>
+
+        <div class="nav-menu" id="navMenu">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html">
+                <i data-lucide="house"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="learn.html" class="active">
+                <i data-lucide="book-open"></i>
+                <span>Learn</span>
+              </a>
+            </li>
+            <li>
+              <a href="quiz.html">
+                <i data-lucide="circle-help"></i>
+                <span>Quiz</span>
+              </a>
+            </li>
+            <li>
+              <a href="community.html">
+                <i data-lucide="users"></i>
+                <span>Community</span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html">
+                <i data-lucide="info"></i>
+                <span>About</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="nav-buttons">
+            <a href="login.html" class="login-btn">
+              <i data-lucide="log-in"></i>
+              <span>Login</span>
+            </a>
+            <a href="register.html" class="register-btn">
+              <i data-lucide="user-plus"></i>
+              <span>Register</span>
+            </a>
+            <button
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Toggle dark mode"
+              title="Toggle dark mode"
+            >
+              <span class="theme-toggle-label"></span>
+              <i data-lucide="moon"></i>
+              <span class="theme-status-dot" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- =========================================================
+      MAIN CONTENT AREA
+    ========================================================== -->
+    <main class="learn-main">
+      <!-- HERO SECTION WITH SEARCH & FILTERS -->
+      <section class="learn-section">
+        <div class="learn-hero">
+          <div>
+            <h1>Learning Hub</h1>
+            <p>
+              Explore Catholic resources, deepen your faith, and grow in
+              knowledge
+            </p>
+            <div class="learn-hero-controls">
+              <div class="search-box">
+                <input
+                  type="text"
+                  class="search-input"
+                  placeholder="Search learning resources..."
+                  id="searchInput"
+                  aria-label="Search learning resources"
+                />
+                <i data-lucide="search" class="search-icon"></i>
+              </div>
+              <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">
+                  All Categories
+                </button>
+                <button class="filter-btn" data-filter="scripture">
+                  Scripture
+                </button>
+                <button class="filter-btn" data-filter="sacraments">
+                  Sacraments
+                </button>
+                <button class="filter-btn" data-filter="catechism">
+                  Catechism
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED LEARNING RESOURCE -->
+      <section class="learn-section">
+        <div class="featured-banner">
+          <div>
+            <h3>📖 Featured: Introduction to Scripture Study</h3>
+            <p>
+              Learn how to read, understand, and reflect on the Bible with
+              guidance from Catholic scholars.
+            </p>
+          </div>
+          <button class="featured-banner-btn">Start Learning</button>
+        </div>
+      </section>
+
+      <!-- LEARNING CATEGORIES SECTION -->
+      <section class="learn-section">
+        <div class="section-header">
+          <h2>Learning Categories</h2>
+          <a href="#" class="view-all-link"
+            >View all
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px"></i
+          ></a>
+        </div>
+
+        <div class="card-grid">
+          <!-- Scripture & Bible -->
+          <article class="learning-card" data-category="scripture">
+            <div class="card-header category-scripture">📕</div>
+            <div class="card-content">
+              <h3 class="card-title">Scripture & Bible</h3>
+              <p class="card-description">
+                Explore the Bible, understand scripture passages, and deepen
+                your knowledge of God's word.
+              </p>
+              <div class="card-stats">
+                <div class="stat-item">
+                  <i data-lucide="book"></i>
+                  <span>24 Resources</span>
+                </div>
+                <div class="stat-item">
+                  <i data-lucide="clock"></i>
+                  <span>Beginner</span>
+                </div>
+              </div>
+              <button class="card-btn">Explore</button>
+            </div>
+          </article>
+
+          <!-- Sacraments -->
+          <article class="learning-card" data-category="sacraments">
+            <div class="card-header category-sacraments">✨</div>
+            <div class="card-content">
+              <h3 class="card-title">Sacraments</h3>
+              <p class="card-description">
+                Learn about the seven sacraments and their significance in
+                Catholic faith.
+              </p>
+              <div class="card-stats">
+                <div class="stat-item">
+                  <i data-lucide="book"></i>
+                  <span>18 Resources</span>
+                </div>
+                <div class="stat-item">
+                  <i data-lucide="clock"></i>
+                  <span>Intermediate</span>
+                </div>
+              </div>
+              <button class="card-btn">Explore</button>
+            </div>
+          </article>
+
+          <!-- Catechism -->
+          <article class="learning-card" data-category="catechism">
+            <div class="card-header category-catechism">📚</div>
+            <div class="card-content">
+              <h3 class="card-title">Catechism</h3>
+              <p class="card-description">
+                Study the Catholic Catechism and core teachings of the Church.
+              </p>
+              <div class="card-stats">
+                <div class="stat-item">
+                  <i data-lucide="book"></i>
+                  <span>32 Resources</span>
+                </div>
+                <div class="stat-item">
+                  <i data-lucide="clock"></i>
+                  <span>Intermediate</span>
+                </div>
+              </div>
+              <button class="card-btn">Explore</button>
+            </div>
+          </article>
+
+          <!-- Saints & History -->
+          <article class="learning-card" data-category="saints">
+            <div class="card-header category-saints">⛪</div>
+            <div class="card-content">
+              <h3 class="card-title">Saints & History</h3>
+              <p class="card-description">
+                Discover the lives and legacies of Catholic saints throughout
+                history.
+              </p>
+              <div class="card-stats">
+                <div class="stat-item">
+                  <i data-lucide="book"></i>
+                  <span>40 Resources</span>
+                </div>
+                <div class="stat-item">
+                  <i data-lucide="clock"></i>
+                  <span>Beginner</span>
+                </div>
+              </div>
+              <button class="card-btn">Explore</button>
+            </div>
+          </article>
+
+          <!-- Morality & Ethics -->
+          <article class="learning-card" data-category="morality">
+            <div class="card-header category-morality">⚖️</div>
+            <div class="card-content">
+              <h3 class="card-title">Morality & Ethics</h3>
+              <p class="card-description">
+                Explore Catholic moral teachings and ethical guidance for daily
+                life.
+              </p>
+              <div class="card-stats">
+                <div class="stat-item">
+                  <i data-lucide="book"></i>
+                  <span>28 Resources</span>
+                </div>
+                <div class="stat-item">
+                  <i data-lucide="clock"></i>
+                  <span>Intermediate</span>
+                </div>
+              </div>
+              <button class="card-btn">Explore</button>
+            </div>
+          </article>
+
+          <!-- Prayers & Devotions -->
+          <article class="learning-card" data-category="prayers">
+            <div class="card-header category-prayers">🙏</div>
+            <div class="card-content">
+              <h3 class="card-title">Prayers & Devotions</h3>
+              <p class="card-description">
+                Learn traditional Catholic prayers and devotional practices.
+              </p>
+              <div class="card-stats">
+                <div class="stat-item">
+                  <i data-lucide="book"></i>
+                  <span>35 Resources</span>
+                </div>
+                <div class="stat-item">
+                  <i data-lucide="clock"></i>
+                  <span>Beginner</span>
+                </div>
+              </div>
+              <button class="card-btn">Explore</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- POPULAR RESOURCES SECTION -->
+      <section class="learn-section">
+        <div class="section-header">
+          <h2>Popular Resources</h2>
+          <a href="#" class="view-all-link"
+            >View all
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px"></i
+          ></a>
+        </div>
+
+        <div class="card-grid">
+          <!-- Resource 1 -->
+          <article class="learning-card">
+            <div class="card-header category-scripture">📖</div>
+            <div class="card-content">
+              <h3 class="card-title">Understanding the Gospels</h3>
+              <p class="card-description">
+                A comprehensive guide to the four Gospels and their
+                significance.
+              </p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 65%"></div>
+              </div>
+              <div class="card-stats">
+                <div class="stat-item">
+                  <i data-lucide="star"></i>
+                  <span>⭐ 4.8</span>
+                </div>
+                <div class="stat-item">
+                  <i data-lucide="users"></i>
+                  <span>2.3K students</span>
+                </div>
+              </div>
+              <button class="card-btn">Continue</button>
+            </div>
+          </article>
+
+          <!-- Resource 2 -->
+          <article class="learning-card">
+            <div class="card-header category-catechism">📕</div>
+            <div class="card-content">
+              <h3 class="card-title">Rosary Devotion Guide</h3>
+              <p class="card-description">
+                Learn the mysteries and practice the rosary devotion.
+              </p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 45%"></div>
+              </div>
+              <div class="card-stats">
+                <div class="stat-item">
+                  <i data-lucide="star"></i>
+                  <span>⭐ 4.9</span>
+                </div>
+                <div class="stat-item">
+                  <i data-lucide="users"></i>
+                  <span>1.8K students</span>
+                </div>
+              </div>
+              <button class="card-btn">Continue</button>
+            </div>
+          </article>
+
+          <!-- Resource 3 -->
+          <article class="learning-card">
+            <div class="card-header category-saints">⛪</div>
+            <div class="card-content">
+              <h3 class="card-title">Saints of the Church</h3>
+              <p class="card-description">
+                Explore inspiring stories of Catholic saints through history.
+              </p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 28%"></div>
+              </div>
+              <div class="card-stats">
+                <div class="stat-item">
+                  <i data-lucide="star"></i>
+                  <span>⭐ 4.7</span>
+                </div>
+                <div class="stat-item">
+                  <i data-lucide="users"></i>
+                  <span>3.1K students</span>
+                </div>
+              </div>
+              <button class="card-btn">Continue</button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/navbar.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="js/theme.js"></script>
+
+    <!-- Learn Page Script -->
+    <script>
+      // Filter functionality
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          // Remove active from all buttons
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach((b) => b.classList.remove("active"));
+          // Add active to clicked button
+          this.classList.add("active");
+
+          const filter = this.dataset.filter;
+          const cards = document.querySelectorAll(
+            ".learning-card[data-category]",
+          );
+
+          cards.forEach((card) => {
+            if (filter === "all" || card.dataset.category === filter) {
+              card.style.display = "";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // Search functionality
+      const searchInput = document.getElementById("searchInput");
+      if (searchInput) {
+        searchInput.addEventListener("input", function (e) {
+          const query = e.target.value.toLowerCase();
+          const cards = document.querySelectorAll(".learning-card");
+
+          cards.forEach((card) => {
+            const title =
+              card.querySelector(".card-title")?.textContent.toLowerCase() ||
+              "";
+            const desc =
+              card
+                .querySelector(".card-description")
+                ?.textContent.toLowerCase() || "";
+
+            if (title.includes(query) || desc.includes(query)) {
+              card.style.display = "";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      }
+
+      // Card button interactions
+      document.querySelectorAll(".card-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          alert("Course content will be available soon!");
+        });
+      });
+
+      // Featured banner button
+      document
+        .querySelector(".featured-banner-btn")
+        ?.addEventListener("click", function () {
+          alert("Starting the featured course...");
+        });
+    </script>
+  </body>
+</html>

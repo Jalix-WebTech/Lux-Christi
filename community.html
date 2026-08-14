@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="en">
+  <!--
+    Lux Christi - Community Page
+    ----------------------------
+    Professional community hub featuring:
+    - Discussion feed and threads
+    - Community categories
+    - Featured discussions
+    - User engagement elements
+    - Search and filter functionality
+    - Responsive layouts
+    - Full dark mode support
+  -->
+  <head>
+    <!-- Character Encoding -->
+    <meta charset="UTF-8" />
+
+    <!-- Responsive Viewport -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <!-- SEO Title & Description -->
+    <title>Community | Lux Christi - Connect & Grow Together</title>
+    <meta
+      name="description"
+      content="Join the Lux Christi community, discuss faith topics, share experiences, and connect with fellow learners."
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <!-- Community Page Styles -->
+    <style>
+      /* ===== CSS VARIABLES ===== */
+      :root {
+        --section-padding-mobile: 24px 16px;
+        --section-padding-tablet: 32px 24px;
+        --section-padding-desktop: 48px 40px;
+      }
+
+      /* ===== MAIN LAYOUT ===== */
+      .community-main {
+        min-height: calc(100vh - 80px);
+        background: var(--color-background);
+        padding-top: 20px;
+      }
+
+      /* ===== SECTION WRAPPER ===== */
+      .community-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--section-padding-mobile);
+      }
+
+      @media (min-width: 640px) {
+        .community-section {
+          padding: var(--section-padding-tablet);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .community-section {
+          padding: var(--section-padding-desktop);
+        }
+      }
+
+      /* ===== HERO SECTION ===== */
+      .community-hero {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary) 0%,
+          var(--color-secondary) 100%
+        );
+        color: var(--color-white);
+        border-radius: 16px;
+        padding: 40px 20px;
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      .community-hero h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0 0 12px 0;
+        line-height: 1.2;
+      }
+
+      .community-hero p {
+        font-size: 1rem;
+        margin: 0 0 28px 0;
+        opacity: 0.95;
+        line-height: 1.5;
+      }
+
+      .community-hero-btn {
+        display: inline-block;
+        padding: 12px 28px;
+        background: var(--color-white);
+        color: var(--color-primary);
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .community-hero-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (max-width: 640px) {
+        .community-hero {
+          padding: 32px 16px;
+        }
+
+        .community-hero h1 {
+          font-size: 1.6rem;
+        }
+
+        .community-hero p {
+          font-size: 0.95rem;
+        }
+      }
+
+      /* ===== CONTENT GRID ===== */
+      .community-content {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 32px;
+        align-items: start;
+      }
+
+      @media (max-width: 1024px) {
+        .community-content {
+          grid-template-columns: 1fr 250px;
+          gap: 24px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .community-content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ===== MAIN DISCUSSION FEED ===== */
+      .discussion-feed {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      /* ===== SEARCH & FILTER BAR ===== */
+      .feed-controls {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+        align-items: center;
+      }
+
+      .search-box {
+        flex: 1;
+        position: relative;
+        min-width: 0;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 40px 12px 16px;
+        border: 1.5px solid var(--color-border);
+        border-radius: 8px;
+        background: var(--color-surface);
+        color: var(--color-text);
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      .search-input:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px var(--color-primary-light);
+      }
+
+      .search-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--color-text-light);
+        width: 18px;
+        height: 18px;
+        pointer-events: none;
+      }
+
+      .sort-select {
+        padding: 10px 12px;
+        border: 1.5px solid var(--color-border);
+        border-radius: 8px;
+        background: var(--color-surface);
+        color: var(--color-text);
+        font-size: 0.9rem;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      .sort-select:focus {
+        border-color: var(--color-primary);
+      }
+
+      @media (max-width: 640px) {
+        .feed-controls {
+          flex-direction: column;
+        }
+
+        .sort-select {
+          width: 100%;
+        }
+      }
+
+      /* ===== DISCUSSION THREAD CARD ===== */
+      .discussion-thread {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: 20px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .discussion-thread:hover {
+        border-color: var(--color-primary);
+        box-shadow: 0 6px 16px rgba(21, 101, 192, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .thread-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .thread-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          var(--color-primary),
+          var(--color-secondary)
+        );
+        color: var(--color-white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .thread-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .thread-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--color-text);
+        margin: 0 0 4px 0;
+        line-height: 1.3;
+      }
+
+      .thread-meta {
+        font-size: 0.85rem;
+        color: var(--color-text-light);
+        margin: 0;
+      }
+
+      .thread-category {
+        display: inline-block;
+        padding: 2px 8px;
+        background: var(--color-primary-light);
+        color: var(--color-primary);
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-left: 8px;
+      }
+
+      .thread-description {
+        font-size: 0.95rem;
+        color: var(--color-text-light);
+        margin: 12px 0;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      /* ===== THREAD STATS ===== */
+      .thread-stats {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 12px;
+        border-top: 1px solid var(--color-border);
+        font-size: 0.9rem;
+        color: var(--color-text-light);
+      }
+
+      .stat-group {
+        display: flex;
+        gap: 16px;
+      }
+
+      .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .stat-item svg {
+        width: 14px;
+        height: 14px;
+        stroke-width: 2;
+      }
+
+      .stat-badge {
+        padding: 4px 10px;
+        background: var(--color-primary-light);
+        color: var(--color-primary);
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      /* ===== SIDEBAR ===== */
+      .community-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      /* ===== CATEGORY BOX ===== */
+      .category-box {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: 20px;
+      }
+
+      .category-box h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--color-text);
+        margin: 0 0 16px 0;
+      }
+
+      .category-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .category-item {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .category-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .category-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--color-text);
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+      }
+
+      .category-link:hover {
+        color: var(--color-primary);
+      }
+
+      .category-count {
+        background: var(--color-primary-light);
+        color: var(--color-primary);
+        border-radius: 12px;
+        padding: 2px 8px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      /* ===== INFO BOX ===== */
+      .info-box {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary-light),
+          var(--color-background)
+        );
+        border: 1px solid var(--color-primary);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .info-box h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--color-text);
+        margin: 0 0 8px 0;
+      }
+
+      .info-box p {
+        font-size: 0.9rem;
+        color: var(--color-text-light);
+        margin: 0 0 16px 0;
+        line-height: 1.4;
+      }
+
+      .info-box-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: var(--color-primary);
+        color: var(--color-white);
+        border: none;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .info-box-btn:hover {
+        background: var(--color-primary-dark);
+        transform: translateY(-1px);
+      }
+
+      /* ===== EMPTY STATE ===== */
+      .empty-state {
+        background: var(--color-surface);
+        border: 2px dashed var(--color-border);
+        border-radius: 12px;
+        padding: 60px 20px;
+        text-align: center;
+      }
+
+      .empty-state-icon {
+        font-size: 4rem;
+        margin-bottom: 16px;
+      }
+
+      .empty-state h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--color-text);
+        margin: 0 0 8px 0;
+      }
+
+      .empty-state p {
+        font-size: 1rem;
+        color: var(--color-text-light);
+        margin: 0;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        .community-sidebar {
+          display: none;
+        }
+
+        .thread-header {
+          gap: 10px;
+        }
+
+        .discussion-thread {
+          padding: 16px;
+        }
+
+        .thread-stats {
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+      }
+
+      /* ===== DARK MODE ===== */
+      [data-theme="dark"] .community-hero {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary) 0%,
+          var(--color-secondary) 100%
+        );
+      }
+
+      [data-theme="dark"] .discussion-thread:hover {
+        border-color: var(--color-primary);
+      }
+
+      [data-theme="dark"] .thread-category {
+        background: var(--color-primary-light);
+        color: var(--color-primary);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+      LUX CHRISTI • APPLICATION HEADER
+    ========================================================== -->
+    <header class="header">
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.jpg" alt="Lux Christi Logo" />
+          <span>Lux Christi</span>
+        </a>
+
+        <button
+          id="menuToggle"
+          class="menu-toggle"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="navMenu"
+        >
+          <i data-lucide="menu" class="menu-icon"></i>
+          <i data-lucide="x" class="close-icon"></i>
+        </button>
+
+        <div class="nav-menu" id="navMenu">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html">
+                <i data-lucide="house"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="learn.html">
+                <i data-lucide="book-open"></i>
+                <span>Learn</span>
+              </a>
+            </li>
+            <li>
+              <a href="quiz.html">
+                <i data-lucide="circle-help"></i>
+                <span>Quiz</span>
+              </a>
+            </li>
+            <li>
+              <a href="community.html" class="active">
+                <i data-lucide="users"></i>
+                <span>Community</span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html">
+                <i data-lucide="info"></i>
+                <span>About</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="nav-buttons">
+            <a href="login.html" class="login-btn">
+              <i data-lucide="log-in"></i>
+              <span>Login</span>
+            </a>
+            <a href="register.html" class="register-btn">
+              <i data-lucide="user-plus"></i>
+              <span>Register</span>
+            </a>
+            <button
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Toggle dark mode"
+              title="Toggle dark mode"
+            >
+              <span class="theme-toggle-label"></span>
+              <i data-lucide="moon"></i>
+              <span class="theme-status-dot" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- =========================================================
+      MAIN CONTENT AREA
+    ========================================================== -->
+    <main class="community-main">
+      <!-- HERO SECTION -->
+      <section class="community-section">
+        <div class="community-hero">
+          <h1>Community Hub</h1>
+          <p>
+            Connect with fellow learners, share your faith journey, and grow
+            together
+          </p>
+          <button class="community-hero-btn">Start a Discussion</button>
+        </div>
+      </section>
+
+      <!-- MAIN CONTENT AREA -->
+      <section class="community-section">
+        <div class="community-content">
+          <!-- DISCUSSION FEED -->
+          <div>
+            <!-- SEARCH & FILTER -->
+            <div class="feed-controls">
+              <div class="search-box">
+                <input
+                  type="text"
+                  class="search-input"
+                  placeholder="Search discussions..."
+                  id="searchInput"
+                  aria-label="Search discussions"
+                />
+                <i data-lucide="search" class="search-icon"></i>
+              </div>
+              <select
+                class="sort-select"
+                id="sortSelect"
+                aria-label="Sort discussions"
+              >
+                <option value="latest">Latest</option>
+                <option value="popular">Most Popular</option>
+                <option value="trending">Trending</option>
+                <option value="unanswered">Unanswered</option>
+              </select>
+            </div>
+
+            <!-- FEATURED DISCUSSION -->
+            <div
+              class="discussion-thread"
+              style="
+                border: 2px solid var(--color-primary);
+                margin-bottom: 20px;
+              "
+            >
+              <div class="thread-header">
+                <div class="thread-avatar">⭐</div>
+                <div class="thread-info">
+                  <h3 class="thread-title">
+                    Welcome to Lux Christi Community!
+                  </h3>
+                  <p class="thread-meta">
+                    Pinned by <strong>Admin</strong> • 2 weeks ago
+                  </p>
+                </div>
+              </div>
+              <p class="thread-description">
+                Welcome to our Catholic learning community! This is a safe space
+                to discuss faith, ask questions, share experiences, and support
+                each other on our spiritual journeys. Please read our community
+                guidelines before posting.
+              </p>
+              <div class="thread-stats">
+                <div class="stat-group">
+                  <div class="stat-item">
+                    <i data-lucide="message-circle"></i>
+                    <span>124 replies</span>
+                  </div>
+                  <div class="stat-item">
+                    <i data-lucide="eye"></i>
+                    <span>3.2K views</span>
+                  </div>
+                </div>
+                <span class="stat-badge">Pinned</span>
+              </div>
+            </div>
+
+            <!-- DISCUSSION THREADS -->
+            <div class="discussion-feed" id="discussionFeed">
+              <!-- Thread 1 -->
+              <div class="discussion-thread" data-category="scripture">
+                <div class="thread-header">
+                  <div class="thread-avatar">MJ</div>
+                  <div class="thread-info">
+                    <h3 class="thread-title">Understanding the Beatitudes</h3>
+                    <p class="thread-meta">
+                      by <strong>Michael James</strong>
+                      <span class="thread-category">Scripture</span>
+                    </p>
+                    <p class="thread-meta">3 hours ago</p>
+                  </div>
+                </div>
+                <p class="thread-description">
+                  I'm studying Matthew 5:3-12 and would love to discuss the
+                  deeper meaning of the Beatitudes. How do they apply to our
+                  modern lives? What insights have you gained from reflecting on
+                  them?
+                </p>
+                <div class="thread-stats">
+                  <div class="stat-group">
+                    <div class="stat-item">
+                      <i data-lucide="message-circle"></i>
+                      <span>12 replies</span>
+                    </div>
+                    <div class="stat-item">
+                      <i data-lucide="heart"></i>
+                      <span>28 likes</span>
+                    </div>
+                    <div class="stat-item">
+                      <i data-lucide="eye"></i>
+                      <span>245 views</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Thread 2 -->
+              <div class="discussion-thread" data-category="prayer">
+                <div class="thread-header">
+                  <div class="thread-avatar">SR</div>
+                  <div class="thread-info">
+                    <h3 class="thread-title">
+                      Rosary Reflection - Joyful Mysteries
+                    </h3>
+                    <p class="thread-meta">
+                      by <strong>Sarah Rodriguez</strong>
+                      <span class="thread-category">Prayer</span>
+                    </p>
+                    <p class="thread-meta">1 day ago</p>
+                  </div>
+                </div>
+                <p class="thread-description">
+                  I just completed a novena with the Joyful Mysteries and felt
+                  such a profound peace. I'd love to hear your experiences with
+                  the rosary. Which mysteries speak to you most deeply?
+                </p>
+                <div class="thread-stats">
+                  <div class="stat-group">
+                    <div class="stat-item">
+                      <i data-lucide="message-circle"></i>
+                      <span>34 replies</span>
+                    </div>
+                    <div class="stat-item">
+                      <i data-lucide="heart"></i>
+                      <span>89 likes</span>
+                    </div>
+                    <div class="stat-item">
+                      <i data-lucide="eye"></i>
+                      <span>712 views</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Thread 3 -->
+              <div class="discussion-thread" data-category="sacraments">
+                <div class="thread-header">
+                  <div class="thread-avatar">JP</div>
+                  <div class="thread-info">
+                    <h3 class="thread-title">Preparing for Confirmation</h3>
+                    <p class="thread-meta">
+                      by <strong>John Paul</strong>
+                      <span class="thread-category">Sacraments</span>
+                    </p>
+                    <p class="thread-meta">2 days ago</p>
+                  </div>
+                </div>
+                <p class="thread-description">
+                  My teenager is preparing for Confirmation and I want to help
+                  them understand the importance and meaning. Has anyone else
+                  guided a young person through this sacrament? What advice
+                  would you give?
+                </p>
+                <div class="thread-stats">
+                  <div class="stat-group">
+                    <div class="stat-item">
+                      <i data-lucide="message-circle"></i>
+                      <span>8 replies</span>
+                    </div>
+                    <div class="stat-item">
+                      <i data-lucide="heart"></i>
+                      <span>15 likes</span>
+                    </div>
+                    <div class="stat-item">
+                      <i data-lucide="eye"></i>
+                      <span>156 views</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Thread 4 -->
+              <div class="discussion-thread" data-category="saints">
+                <div class="thread-header">
+                  <div class="thread-avatar">EC</div>
+                  <div class="thread-info">
+                    <h3 class="thread-title">
+                      Saint Francis of Assisi - A Model for Our Time
+                    </h3>
+                    <p class="thread-meta">
+                      by <strong>Elizabeth Chen</strong>
+                      <span class="thread-category">Saints</span>
+                    </p>
+                    <p class="thread-meta">5 days ago</p>
+                  </div>
+                </div>
+                <p class="thread-description">
+                  Saint Francis's devotion to creation and simplicity feels so
+                  relevant today. How can we apply his example of poverty and
+                  peace in our consumer-focused society?
+                </p>
+                <div class="thread-stats">
+                  <div class="stat-group">
+                    <div class="stat-item">
+                      <i data-lucide="message-circle"></i>
+                      <span>42 replies</span>
+                    </div>
+                    <div class="stat-item">
+                      <i data-lucide="heart"></i>
+                      <span>156 likes</span>
+                    </div>
+                    <div class="stat-item">
+                      <i data-lucide="eye"></i>
+                      <span>1.2K views</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Thread 5 -->
+              <div class="discussion-thread" data-category="morality">
+                <div class="thread-header">
+                  <div class="thread-avatar">DK</div>
+                  <div class="thread-info">
+                    <h3 class="thread-title">
+                      Navigating Moral Challenges at Work
+                    </h3>
+                    <p class="thread-meta">
+                      by <strong>David Kim</strong>
+                      <span class="thread-category">Morality</span>
+                    </p>
+                    <p class="thread-meta">1 week ago</p>
+                  </div>
+                </div>
+                <p class="thread-description">
+                  I often face ethical dilemmas in my workplace. How do you
+                  balance Catholic values with professional expectations? Any
+                  practical advice from your experiences?
+                </p>
+                <div class="thread-stats">
+                  <div class="stat-group">
+                    <div class="stat-item">
+                      <i data-lucide="message-circle"></i>
+                      <span>19 replies</span>
+                    </div>
+                    <div class="stat-item">
+                      <i data-lucide="heart"></i>
+                      <span>67 likes</span>
+                    </div>
+                    <div class="stat-item">
+                      <i data-lucide="eye"></i>
+                      <span>534 views</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SIDEBAR -->
+          <aside class="community-sidebar">
+            <!-- CATEGORIES -->
+            <div class="category-box">
+              <h3>Categories</h3>
+              <ul class="category-list">
+                <li class="category-item">
+                  <a href="#" class="category-link" data-category="all">
+                    <span>All Discussions</span>
+                    <span class="category-count">247</span>
+                  </a>
+                </li>
+                <li class="category-item">
+                  <a href="#" class="category-link" data-category="scripture">
+                    <span>Scripture</span>
+                    <span class="category-count">56</span>
+                  </a>
+                </li>
+                <li class="category-item">
+                  <a href="#" class="category-link" data-category="prayer">
+                    <span>Prayer</span>
+                    <span class="category-count">43</span>
+                  </a>
+                </li>
+                <li class="category-item">
+                  <a href="#" class="category-link" data-category="sacraments">
+                    <span>Sacraments</span>
+                    <span class="category-count">28</span>
+                  </a>
+                </li>
+                <li class="category-item">
+                  <a href="#" class="category-link" data-category="saints">
+                    <span>Saints</span>
+                    <span class="category-count">31</span>
+                  </a>
+                </li>
+                <li class="category-item">
+                  <a href="#" class="category-link" data-category="morality">
+                    <span>Morality & Ethics</span>
+                    <span class="category-count">38</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- INFO BOX -->
+            <div class="info-box">
+              <h3>Community Guidelines</h3>
+              <p>
+                Be respectful, kind, and inclusive. All discussions should honor
+                our faith traditions.
+              </p>
+              <button class="info-box-btn">Read More</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/navbar.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="js/theme.js"></script>
+
+    <!-- Community Page Script -->
+    <script>
+      // Category filtering
+      document.querySelectorAll(".category-link").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const category = this.dataset.category;
+          const threads = document.querySelectorAll(
+            ".discussion-thread[data-category]",
+          );
+
+          threads.forEach((thread) => {
+            if (category === "all" || thread.dataset.category === category) {
+              thread.style.display = "";
+            } else {
+              thread.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // Search functionality
+      const searchInput = document.getElementById("searchInput");
+      if (searchInput) {
+        searchInput.addEventListener("input", function (e) {
+          const query = e.target.value.toLowerCase();
+          const threads = document.querySelectorAll(
+            ".discussion-thread[data-category]",
+          );
+
+          threads.forEach((thread) => {
+            const title =
+              thread
+                .querySelector(".thread-title")
+                ?.textContent.toLowerCase() || "";
+            const desc =
+              thread
+                .querySelector(".thread-description")
+                ?.textContent.toLowerCase() || "";
+
+            if (title.includes(query) || desc.includes(query)) {
+              thread.style.display = "";
+            } else {
+              thread.style.display = "none";
+            }
+          });
+        });
+      }
+
+      // Sort functionality
+      document
+        .getElementById("sortSelect")
+        ?.addEventListener("change", function () {
+          const sortValue = this.value;
+          alert(`Sorting by: ${sortValue}`);
+          // In a real app, this would re-order the threads
+        });
+
+      // Thread interaction
+      document
+        .querySelectorAll(".discussion-thread[data-category]")
+        .forEach((thread) => {
+          thread.addEventListener("click", function () {
+            const title = this.querySelector(".thread-title")?.textContent;
+            alert(`Opening discussion: ${title}`);
+          });
+        });
+
+      // Start discussion button
+      document
+        .querySelector(".community-hero-btn")
+        ?.addEventListener("click", function () {
+          alert("Start a new discussion (redirect to form)");
+        });
+
+      // Community guidelines button
+      document
+        .querySelector(".info-box-btn")
+        ?.addEventListener("click", function () {
+          alert("Showing community guidelines...");
+        });
+    </script>
+  </body>
+</html>

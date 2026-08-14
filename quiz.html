@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+  <!--
+    Lux Christi - Quiz Page
+    -----------------------
+    Interactive quiz interface with multiple choice questions,
+    scoring system, progress tracking, and responsive design with
+    full dark mode support.
+  -->
+  <head>
+    <!-- Character Encoding -->
+    <meta charset="UTF-8" />
+
+    <!-- Responsive Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Title -->
+    <title>Quiz | Lux Christi - Test Your Knowledge</title>
+
+    <!-- Website Description -->
+    <meta
+      name="description"
+      content="Challenge yourself with Lux Christi quizzes. Test your Catholic knowledge and compete with others."
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+
+  <body>
+    <!-- =========================================================
+      LUX CHRISTI • APPLICATION HEADER
+      Purpose:
+      - Brand Identity
+      - Primary Navigation
+      - Theme Toggle
+      - Authentication
+      - Mobile Navigation
+    ========================================================== -->
+
+    <header class="header">
+      <nav class="navbar">
+        <!-- Brand Logo -->
+        <a href="index.html" class="logo">
+          <img src="assets/logo.jpg" alt="Lux Christi Logo" />
+          <span>Lux Christi</span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="menuToggle"
+          class="menu-toggle"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="navMenu"
+        >
+          <i data-lucide="menu" class="menu-icon"></i>
+          <i data-lucide="x" class="close-icon"></i>
+        </button>
+
+        <!-- Navigation Menu -->
+        <div class="nav-menu" id="navMenu">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html">
+                <i data-lucide="house"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="learn.html">
+                <i data-lucide="book-open"></i>
+                <span>Learn</span>
+              </a>
+            </li>
+            <li>
+              <a href="quiz.html" class="active">
+                <i data-lucide="circle-help"></i>
+                <span>Quiz</span>
+              </a>
+            </li>
+            <li>
+              <a href="community.html">
+                <i data-lucide="users"></i>
+                <span>Community</span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html">
+                <i data-lucide="info"></i>
+                <span>About</span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Action Buttons -->
+          <div class="nav-buttons">
+            <a href="login.html" class="login-btn">
+              <i data-lucide="log-in"></i>
+              <span>Login</span>
+            </a>
+            <a href="register.html" class="register-btn">
+              <i data-lucide="user-plus"></i>
+              <span>Register</span>
+            </a>
+            <button
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Toggle dark mode"
+              title="Toggle dark mode"
+            >
+              <span class="theme-toggle-label"></span>
+              <i data-lucide="moon"></i>
+              <span class="theme-status-dot" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- =========================================================
+      MAIN CONTENT AREA
+    ========================================================== -->
+
+    <main
+      style="
+        padding: 40px 20px;
+        background: var(--color-background);
+        min-height: calc(100vh - 80px);
+      "
+    >
+      <div style="max-width: 1200px; margin: 0 auto">
+        <!-- Hero Section -->
+        <div style="text-align: center; margin-bottom: 4rem">
+          <h1
+            style="
+              font-size: 2.5rem;
+              margin-bottom: 1rem;
+              color: var(--color-text);
+            "
+          >
+            Test Your Faith Knowledge
+          </h1>
+          <p
+            style="
+              font-size: 1.1rem;
+              color: var(--color-text-light);
+              max-width: 600px;
+              margin: 0 auto;
+            "
+          >
+            Challenge yourself with our comprehensive Catholic knowledge quizzes
+          </p>
+        </div>
+
+        <!-- Quiz Categories Grid -->
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+          "
+        >
+          <!-- Category 1: Scripture -->
+          <div
+            style="
+              background: var(--color-surface);
+              border: 1px solid var(--color-border);
+              border-radius: 8px;
+              overflow: hidden;
+              transition: all 0.3s ease;
+              cursor: pointer;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--color-primary),
+                  var(--color-primary-dark)
+                );
+                padding: 2rem;
+                text-align: center;
+              "
+            >
+              <div style="font-size: 3rem; margin-bottom: 1rem">📖</div>
+              <h3
+                style="font-size: 1.3rem; color: var(--color-white); margin: 0"
+              >
+                Scripture & Bible
+              </h3>
+            </div>
+            <div style="padding: 1.5rem">
+              <p style="color: var(--color-text-light); margin-bottom: 1rem">
+                Test your knowledge of the Bible and scripture passages
+              </p>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 1rem;
+                  font-size: 0.9rem;
+                  color: var(--color-text-light);
+                "
+              >
+                <span>📊 125 Questions</span>
+                <span>⭐ 4.8/5</span>
+              </div>
+              <a
+                href="#"
+                style="
+                  display: inline-block;
+                  background: var(--color-primary);
+                  color: var(--color-white);
+                  padding: 0.5rem 1.5rem;
+                  border-radius: 4px;
+                  text-decoration: none;
+                  font-weight: 600;
+                  width: 100%;
+                  text-align: center;
+                "
+              >
+                Start Quiz
+              </a>
+            </div>
+          </div>
+
+          <!-- Category 2: Sacraments -->
+          <div
+            style="
+              background: var(--color-surface);
+              border: 1px solid var(--color-border);
+              border-radius: 8px;
+              overflow: hidden;
+              transition: all 0.3s ease;
+              cursor: pointer;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--color-secondary),
+                  var(--color-primary)
+                );
+                padding: 2rem;
+                text-align: center;
+              "
+            >
+              <div style="font-size: 3rem; margin-bottom: 1rem">✨</div>
+              <h3
+                style="font-size: 1.3rem; color: var(--color-white); margin: 0"
+              >
+                Sacraments
+              </h3>
+            </div>
+            <div style="padding: 1.5rem">
+              <p style="color: var(--color-text-light); margin-bottom: 1rem">
+                Learn about the seven sacraments and their significance
+              </p>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 1rem;
+                  font-size: 0.9rem;
+                  color: var(--color-text-light);
+                "
+              >
+                <span>📊 87 Questions</span>
+                <span>⭐ 4.9/5</span>
+              </div>
+              <a
+                href="#"
+                style="
+                  display: inline-block;
+                  background: var(--color-primary);
+                  color: var(--color-white);
+                  padding: 0.5rem 1.5rem;
+                  border-radius: 4px;
+                  text-decoration: none;
+                  font-weight: 600;
+                  width: 100%;
+                  text-align: center;
+                "
+              >
+                Start Quiz
+              </a>
+            </div>
+          </div>
+
+          <!-- Category 3: Catechism -->
+          <div
+            style="
+              background: var(--color-surface);
+              border: 1px solid var(--color-border);
+              border-radius: 8px;
+              overflow: hidden;
+              transition: all 0.3s ease;
+              cursor: pointer;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--color-accent),
+                  var(--color-primary)
+                );
+                padding: 2rem;
+                text-align: center;
+              "
+            >
+              <div style="font-size: 3rem; margin-bottom: 1rem">📚</div>
+              <h3
+                style="font-size: 1.3rem; color: var(--color-white); margin: 0"
+              >
+                Catechism
+              </h3>
+            </div>
+            <div style="padding: 1.5rem">
+              <p style="color: var(--color-text-light); margin-bottom: 1rem">
+                Master Catholic doctrine and teachings
+              </p>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 1rem;
+                  font-size: 0.9rem;
+                  color: var(--color-text-light);
+                "
+              >
+                <span>📊 156 Questions</span>
+                <span>⭐ 4.7/5</span>
+              </div>
+              <a
+                href="#"
+                style="
+                  display: inline-block;
+                  background: var(--color-primary);
+                  color: var(--color-white);
+                  padding: 0.5rem 1.5rem;
+                  border-radius: 4px;
+                  text-decoration: none;
+                  font-weight: 600;
+                  width: 100%;
+                  text-align: center;
+                "
+              >
+                Start Quiz
+              </a>
+            </div>
+          </div>
+
+          <!-- Category 4: Saints -->
+          <div
+            style="
+              background: var(--color-surface);
+              border: 1px solid var(--color-border);
+              border-radius: 8px;
+              overflow: hidden;
+              transition: all 0.3s ease;
+              cursor: pointer;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--color-success),
+                  var(--color-primary)
+                );
+                padding: 2rem;
+                text-align: center;
+              "
+            >
+              <div style="font-size: 3rem; margin-bottom: 1rem">👼</div>
+              <h3
+                style="font-size: 1.3rem; color: var(--color-white); margin: 0"
+              >
+                Saints & History
+              </h3>
+            </div>
+            <div style="padding: 1.5rem">
+              <p style="color: var(--color-text-light); margin-bottom: 1rem">
+                Explore the lives of Catholic saints and Church history
+              </p>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 1rem;
+                  font-size: 0.9rem;
+                  color: var(--color-text-light);
+                "
+              >
+                <span>📊 203 Questions</span>
+                <span>⭐ 4.6/5</span>
+              </div>
+              <a
+                href="#"
+                style="
+                  display: inline-block;
+                  background: var(--color-primary);
+                  color: var(--color-white);
+                  padding: 0.5rem 1.5rem;
+                  border-radius: 4px;
+                  text-decoration: none;
+                  font-weight: 600;
+                  width: 100%;
+                  text-align: center;
+                "
+              >
+                Start Quiz
+              </a>
+            </div>
+          </div>
+
+          <!-- Category 5: Morality & Ethics -->
+          <div
+            style="
+              background: var(--color-surface);
+              border: 1px solid var(--color-border);
+              border-radius: 8px;
+              overflow: hidden;
+              transition: all 0.3s ease;
+              cursor: pointer;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--color-info),
+                  var(--color-primary)
+                );
+                padding: 2rem;
+                text-align: center;
+              "
+            >
+              <div style="font-size: 3rem; margin-bottom: 1rem">⚖️</div>
+              <h3
+                style="font-size: 1.3rem; color: var(--color-white); margin: 0"
+              >
+                Morality & Ethics
+              </h3>
+            </div>
+            <div style="padding: 1.5rem">
+              <p style="color: var(--color-text-light); margin-bottom: 1rem">
+                Learn about Catholic moral teachings and virtues
+              </p>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 1rem;
+                  font-size: 0.9rem;
+                  color: var(--color-text-light);
+                "
+              >
+                <span>📊 94 Questions</span>
+                <span>⭐ 4.8/5</span>
+              </div>
+              <a
+                href="#"
+                style="
+                  display: inline-block;
+                  background: var(--color-primary);
+                  color: var(--color-white);
+                  padding: 0.5rem 1.5rem;
+                  border-radius: 4px;
+                  text-decoration: none;
+                  font-weight: 600;
+                  width: 100%;
+                  text-align: center;
+                "
+              >
+                Start Quiz
+              </a>
+            </div>
+          </div>
+
+          <!-- Category 6: Daily Devotion -->
+          <div
+            style="
+              background: var(--color-surface);
+              border: 1px solid var(--color-border);
+              border-radius: 8px;
+              overflow: hidden;
+              transition: all 0.3s ease;
+              cursor: pointer;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--color-warning),
+                  var(--color-primary)
+                );
+                padding: 2rem;
+                text-align: center;
+              "
+            >
+              <div style="font-size: 3rem; margin-bottom: 1rem">🙏</div>
+              <h3
+                style="font-size: 1.3rem; color: var(--color-white); margin: 0"
+              >
+                Prayers & Devotions
+              </h3>
+            </div>
+            <div style="padding: 1.5rem">
+              <p style="color: var(--color-text-light); margin-bottom: 1rem">
+                Test your knowledge of Catholic prayers and devotions
+              </p>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 1rem;
+                  font-size: 0.9rem;
+                  color: var(--color-text-light);
+                "
+              >
+                <span>📊 112 Questions</span>
+                <span>⭐ 4.9/5</span>
+              </div>
+              <a
+                href="#"
+                style="
+                  display: inline-block;
+                  background: var(--color-primary);
+                  color: var(--color-white);
+                  padding: 0.5rem 1.5rem;
+                  border-radius: 4px;
+                  text-decoration: none;
+                  font-weight: 600;
+                  width: 100%;
+                  text-align: center;
+                "
+              >
+                Start Quiz
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Section -->
+        <section
+          style="
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+          "
+        >
+          <h2
+            style="
+              font-size: 1.5rem;
+              margin-bottom: 1rem;
+              color: var(--color-text);
+            "
+          >
+            Ready to Challenge Yourself?
+          </h2>
+          <p
+            style="
+              color: var(--color-text-light);
+              margin-bottom: 1.5rem;
+              max-width: 600px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+          >
+            Our comprehensive quizzes are designed to help you deepen your
+            Catholic faith knowledge while having fun. Compete with friends and
+            earn achievements!
+          </p>
+          <a
+            href="register.html"
+            style="
+              display: inline-block;
+              background: var(--color-primary);
+              color: var(--color-white);
+              padding: 0.75rem 2rem;
+              border-radius: 4px;
+              text-decoration: none;
+              font-weight: 600;
+            "
+          >
+            Create Account to Get Started
+          </a>
+        </section>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/navbar.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="js/theme.js"></script>
+  </body>
+</html>

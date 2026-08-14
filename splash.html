@@ -1,33 +1,380 @@
 <!doctype html>
 <html lang="en">
+  <!--
+    Lux Christi - Splash Screen
+    ---------------------------
+    First-time visitor splash/onboarding page with
+    welcoming content, key features overview, and CTA.
+    This page is shown only once per browser session.
+    Includes responsive design and full dark mode support.
+  -->
   <head>
+    <!-- Character Encoding -->
     <meta charset="UTF-8" />
+
+    <!-- Responsive Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Lux Christi</title>
+    <!-- SEO Title -->
+    <title>Welcome to Lux Christi | Catholic Learning Platform</title>
 
-    <!-- Splash Screen CSS -->
-    <link rel="stylesheet" href="css/splash.css" />
+    <!-- Website Description -->
+    <meta
+      name="description"
+      content="Welcome to Lux Christi, where Catholics learn, grow, and evangelize together."
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
   </head>
 
-  <body>
-    <!-- Splash Screen Container -->
-    <!-- This page is displayed before the main homepage. It gives a branded loading experience. -->
-    <main class="splash">
-      <!-- App Logo -->
-      <img src="assets/logo.jpg" alt="Lux Christi Logo" class="logo" />
+  <body style="margin: 0; padding: 0; overflow-x: hidden">
+    <!-- =========================================================
+      SPLASH SCREEN CONTAINER
+      This is a full-screen welcome experience for first-time visitors.
+      It includes an animated welcome sequence before redirecting to home.
+    ========================================================== -->
 
-      <!-- App Name -->
-      <h1>Lux Christi</h1>
+    <div
+      style="
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(
+          135deg,
+          var(--color-primary),
+          var(--color-primary-dark)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      "
+    >
+      <div
+        style="
+          max-width: 600px;
+          width: 100%;
+          text-align: center;
+          animation: fadeInUp 0.8s ease-out;
+        "
+      >
+        <!-- Logo Section -->
+        <div style="margin-bottom: 2rem; animation: slideDown 0.6s ease-out">
+          <img
+            src="assets/logo.jpg"
+            alt="Lux Christi Logo"
+            style="
+              width: 100px;
+              height: 100px;
+              border-radius: 50%;
+              background: var(--color-white);
+              padding: 10px;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            "
+          />
+        </div>
 
-      <!-- Short Description -->
-      <p>Learn • Grow • Evangelize</p>
+        <!-- Main Heading -->
+        <h1
+          style="
+            font-size: 2.5rem;
+            color: var(--color-white);
+            margin: 0 0 1rem 0;
+            animation: slideDown 0.8s ease-out 0.1s both;
+          "
+        >
+          Welcome to Lux Christi
+        </h1>
 
-      <!-- Loading Animation -->
-      <div class="loader"></div>
-    </main>
+        <!-- Tagline -->
+        <p
+          style="
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0 0 2rem 0;
+            animation: slideDown 0.8s ease-out 0.2s both;
+          "
+        >
+          Learn. Grow. Evangelize.
+        </p>
 
-    <!-- The script below keeps the splash visible for 5 seconds, then sends the user to the homepage. -->
-    <script src="js/splash.js"></script>
+        <!-- Description -->
+        <p
+          style="
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin: 0 0 3rem 0;
+            animation: slideDown 0.8s ease-out 0.3s both;
+          "
+        >
+          Illuminate your faith through knowledge. Join a global community of
+          Catholics growing together through interactive learning, friendly
+          competitions, and spiritual growth.
+        </p>
+
+        <!-- Feature Highlights -->
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            animation: slideDown 0.8s ease-out 0.4s both;
+          "
+        >
+          <!-- Feature 1 -->
+          <div
+            style="
+              background: rgba(255, 255, 255, 0.1);
+              backdrop-filter: blur(10px);
+              padding: 1.5rem;
+              border-radius: 8px;
+              border: 1px solid rgba(255, 255, 255, 0.2);
+            "
+          >
+            <div style="font-size: 2rem; margin-bottom: 0.5rem">📚</div>
+            <h3
+              style="
+                color: var(--color-white);
+                font-size: 1.1rem;
+                margin: 0 0 0.5rem 0;
+              "
+            >
+              Learn Together
+            </h3>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 0.9rem;
+                margin: 0;
+              "
+            >
+              Curated Catholic education
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div
+            style="
+              background: rgba(255, 255, 255, 0.1);
+              backdrop-filter: blur(10px);
+              padding: 1.5rem;
+              border-radius: 8px;
+              border: 1px solid rgba(255, 255, 255, 0.2);
+            "
+          >
+            <div style="font-size: 2rem; margin-bottom: 0.5rem">🏆</div>
+            <h3
+              style="
+                color: var(--color-white);
+                font-size: 1.1rem;
+                margin: 0 0 0.5rem 0;
+              "
+            >
+              Compete & Win
+            </h3>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 0.9rem;
+                margin: 0;
+              "
+            >
+              Engage in friendly competitions
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div
+            style="
+              background: rgba(255, 255, 255, 0.1);
+              backdrop-filter: blur(10px);
+              padding: 1.5rem;
+              border-radius: 8px;
+              border: 1px solid rgba(255, 255, 255, 0.2);
+            "
+          >
+            <div style="font-size: 2rem; margin-bottom: 0.5rem">👥</div>
+            <h3
+              style="
+                color: var(--color-white);
+                font-size: 1.1rem;
+                margin: 0 0 0.5rem 0;
+              "
+            >
+              Connect Globally
+            </h3>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 0.9rem;
+                margin: 0;
+              "
+            >
+              Join a worldwide community
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div
+            style="
+              background: rgba(255, 255, 255, 0.1);
+              backdrop-filter: blur(10px);
+              padding: 1.5rem;
+              border-radius: 8px;
+              border: 1px solid rgba(255, 255, 255, 0.2);
+            "
+          >
+            <div style="font-size: 2rem; margin-bottom: 0.5rem">✨</div>
+            <h3
+              style="
+                color: var(--color-white);
+                font-size: 1.1rem;
+                margin: 0 0 0.5rem 0;
+              "
+            >
+              Grow in Faith
+            </h3>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 0.9rem;
+                margin: 0;
+              "
+            >
+              Deepen your spiritual knowledge
+            </p>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div
+          style="
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideDown 0.8s ease-out 0.5s both;
+          "
+        >
+          <a
+            href="register.html"
+            style="
+              background: var(--color-white);
+              color: var(--color-primary);
+              padding: 0.85rem 2rem;
+              border-radius: 4px;
+              text-decoration: none;
+              font-weight: 600;
+              font-size: 1rem;
+              transition: all 0.3s ease;
+              display: inline-block;
+            "
+          >
+            Get Started
+          </a>
+          <a
+            href="index.html"
+            style="
+              background: rgba(255, 255, 255, 0.2);
+              color: var(--color-white);
+              padding: 0.85rem 2rem;
+              border: 2px solid var(--color-white);
+              border-radius: 4px;
+              text-decoration: none;
+              font-weight: 600;
+              font-size: 1rem;
+              transition: all 0.3s ease;
+              display: inline-block;
+            "
+          >
+            Explore Home
+          </a>
+        </div>
+
+        <!-- Skip Message -->
+        <p
+          style="
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            margin-top: 2rem;
+            animation: slideDown 0.8s ease-out 0.6s both;
+          "
+        >
+          Automatically redirecting in <span id="countdown">5</span> seconds...
+        </p>
+      </div>
+    </div>
+
+    <!-- Animations CSS -->
+    <style>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Smooth theme transitions */
+      * {
+        transition:
+          background 0.35s ease,
+          color 0.35s ease;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+
+    <!-- Redirect Script -->
+    <script>
+      // Countdown and redirect logic
+      let countdown = 5;
+      const countdownElement = document.getElementById("countdown");
+
+      // Update countdown every second
+      const countdownInterval = setInterval(() => {
+        countdown--;
+        if (countdownElement) {
+          countdownElement.textContent = countdown;
+        }
+
+        // Redirect when countdown reaches 0
+        if (countdown <= 0) {
+          clearInterval(countdownInterval);
+          window.location.replace("index.html");
+        }
+      }, 1000);
+
+      // Allow immediate redirect with click on CTA buttons
+      // (handled by href attribute)
+    </script>
+
+    <!-- Lucide Icons Script -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+
+    <!-- Theme Script -->
+    <script src="js/theme.js"></script>
   </body>
 </html>

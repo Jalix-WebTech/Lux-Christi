@@ -1,0 +1,588 @@
+/* ============================================================
+   LUX CHRISTI • FORM COMPONENTS
+   Version: 2.0
+   
+   Comprehensive form styling system used across:
+   - Login form
+   - Registration form
+   - Contact form
+   - Any future forms
+   
+   Features:
+   - Responsive input sizing
+   - Password visibility toggle
+   - Touch-friendly controls
+   - Accessibility-first design
+   - Dark mode support
+============================================================ */
+
+/* ===== ROOT FORM VARIABLES ===== */
+:root {
+  --input-padding-mobile: 1rem;
+  --input-padding-desktop: 0.875rem;
+  --input-height-mobile: 48px;
+  --input-height-desktop: 44px;
+  --focus-ring-offset: 2px;
+  --focus-ring-width: 2px;
+  --form-gap-mobile: 16px;
+  --form-gap-desktop: 18px;
+  --card-padding-mobile: 20px 16px;
+  --card-padding-tablet: 24px 20px;
+  --card-padding-desktop: 28px 20px;
+}
+
+/* ===== MAIN LAYOUT ===== */
+.form-main {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: var(--color-background);
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 520px;
+}
+
+@media (max-width: 480px) {
+  .form-main {
+    padding: 16px 12px;
+    align-items: flex-start;
+    padding-top: 24px;
+  }
+}
+
+/* ===== CARD CONTAINER ===== */
+.form-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: var(--card-padding-mobile);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+@media (max-width: 640px) {
+  .form-card {
+    border-radius: 8px;
+    padding: var(--card-padding-tablet);
+  }
+}
+
+@media (min-width: 640px) {
+  .form-card {
+    padding: var(--card-padding-desktop);
+  }
+}
+
+/* ===== FORM HEADER ===== */
+.form-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.form-header h1 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  margin: 0 0 8px 0;
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.form-header p {
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .form-header h1 {
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+  }
+
+  .form-header p {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== FORM CONTAINER ===== */
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--form-gap-mobile);
+}
+
+@media (min-width: 640px) {
+  .form-content {
+    gap: var(--form-gap-desktop);
+  }
+}
+
+/* ===== FIELD GROUP ===== */
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Two-column grid for name fields */
+.form-field-group.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .form-field-group.field-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* ===== FORM LABELS ===== */
+.form-label {
+  display: block;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  user-select: none;
+}
+
+.form-label .required {
+  color: var(--color-danger);
+  margin-left: 3px;
+}
+
+@media (max-width: 480px) {
+  .form-label {
+    font-size: 0.85rem;
+  }
+}
+
+/* ===== INPUT WRAPPER (for password toggle) ===== */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ===== TEXT & EMAIL INPUTS ===== */
+.form-input {
+  width: 100%;
+  padding: var(--input-padding-mobile);
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+@media (min-width: 640px) {
+  .form-input {
+    padding: var(--input-padding-desktop);
+  }
+}
+
+@media (max-width: 480px) {
+  .form-input {
+    font-size: 16px;
+  }
+}
+
+/* Input focus state */
+.form-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 var(--focus-ring-offset) var(--color-primary-light);
+  background: var(--color-background);
+}
+
+/* Input hover state */
+.form-input:hover:not(:focus) {
+  border-color: var(--color-text-light);
+}
+
+/* ===== PASSWORD INPUT WITH TOGGLE ===== */
+.password-field {
+  position: relative;
+}
+
+.password-input {
+  padding-right: 44px;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--color-text-light);
+  cursor: pointer;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  min-width: 36px;
+  min-height: 36px;
+}
+
+.password-toggle-btn:hover {
+  color: var(--color-text);
+  background: var(--color-border);
+}
+
+.password-toggle-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.password-toggle-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.password-toggle-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+/* ===== SELECT DROPDOWN ===== */
+.form-select {
+  width: 100%;
+  padding: var(--input-padding-mobile);
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px;
+  padding-right: 40px;
+}
+
+@media (min-width: 640px) {
+  .form-select {
+    padding: var(--input-padding-desktop);
+    padding-right: 40px;
+  }
+}
+
+.form-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 var(--focus-ring-offset) var(--color-primary-light);
+}
+
+/* ===== CHECKBOX STYLING ===== */
+.form-checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.form-checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.form-checkbox-group label {
+  cursor: pointer;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+/* ===== HELPER TEXT ===== */
+.form-helper-text {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin: 0;
+  padding-top: 4px;
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.submit-btn {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 8px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  box-shadow: 0 6px 16px rgba(21, 101, 192, 0.15);
+  transform: translateY(-1px);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-btn:focus:not(:disabled) {
+  box-shadow: 0 0 0 3px var(--color-primary-light), 0 6px 16px rgba(21, 101, 192, 0.15);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .submit-btn {
+    font-size: 0.95rem;
+  }
+}
+
+/* ===== DIVIDER ===== */
+.divider-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+  color: var(--color-text-light);
+}
+
+.divider-line::before,
+.divider-line::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.divider-line span {
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* ===== SOCIAL LOGIN BUTTONS ===== */
+.social-login-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 11px 16px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.social-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--color-background);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.social-btn:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+.social-btn:active {
+  transform: scale(0.98);
+}
+
+.social-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+@media (max-width: 480px) {
+  .social-btn {
+    font-size: 0.85rem;
+    padding: 10px 14px;
+  }
+}
+
+/* ===== LINK SECTIONS ===== */
+.link-section {
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.link-section a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.link-section a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.link-section a:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ===== SUPPORT CARD ===== */
+.support-card {
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.support-card p {
+  color: var(--color-text-light);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 0 0 8px 0;
+}
+
+.support-card a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: opacity 0.2s ease;
+}
+
+.support-card a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ===== BENEFITS GRID ===== */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+@media (max-width: 480px) {
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.benefit-card {
+  padding: 16px;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+  box-shadow: 0 4px 12px rgba(21, 101, 192, 0.08);
+}
+
+.benefit-card-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.benefit-card h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 8px 0 4px 0;
+}
+
+.benefit-card p {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ===== DARK MODE ===== */
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-select {
+  background: var(--color-background);
+}
+
+[data-theme="dark"] .password-toggle-btn:hover {
+  background: var(--color-border);
+}
+
+[data-theme="dark"] .form-card {
+  border-color: var(--color-border);
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .form-main {
+    padding: 0;
+  }
+
+  .form-card {
+    box-shadow: none;
+  }
+
+  .submit-btn,
+  .social-btn {
+    display: none;
+  }
+}

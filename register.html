@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="en">
+  <!--
+    Lux Christi - Registration Page
+    --------------------------------
+    Production-grade user registration page with:
+    - Fully responsive design (mobile, tablet, desktop)
+    - Password visibility toggles with eye icon
+    - Modern, polished UI with world-class UX
+    - Touch-friendly interactive elements
+    - Accessibility-first approach
+    - Full dark mode support
+  -->
+  <head>
+    <!-- Character Encoding -->
+    <meta charset="UTF-8" />
+
+    <!-- Responsive Viewport with proper mobile scaling -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <!-- SEO Title -->
+    <title>Register | Lux Christi - Join Our Community</title>
+
+    <!-- Website Description -->
+    <meta
+      name="description"
+      content="Create your Lux Christi account and start your faith learning journey today."
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <!-- ======================================================
+         RESPONSIVE REGISTRATION FORM STYLES
+         ====================================================== -->
+    <style>
+      /* ===== ROOT VARIABLES ===== */
+      :root {
+        --input-padding-mobile: 1rem;
+        --input-padding-desktop: 0.875rem;
+        --input-height-mobile: 48px;
+        --input-height-desktop: 44px;
+        --focus-ring-offset: 2px;
+        --focus-ring-width: 2px;
+      }
+
+      /* ===== MAIN LAYOUT ===== */
+      .register-main {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+        background: var(--color-background);
+      }
+
+      .register-wrapper {
+        width: 100%;
+        max-width: 520px;
+      }
+
+      /* ===== REGISTRATION CARD ===== */
+      .register-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: 28px 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition:
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      /* ===== FORM HEADER ===== */
+      .register-header {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+
+      .register-header h1 {
+        font-size: 1.75rem;
+        line-height: 1.2;
+        margin: 0 0 8px 0;
+        color: var(--color-text);
+        font-weight: 700;
+      }
+
+      .register-header p {
+        color: var(--color-text-light);
+        font-size: 0.95rem;
+        margin: 0;
+        line-height: 1.4;
+      }
+
+      /* ===== FORM STRUCTURE ===== */
+      .register-form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      /* ===== FIELD GROUP ===== */
+      .form-field-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      /* Two-column grid for name fields (mobile-responsive) */
+      .form-field-group.name-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      @media (max-width: 480px) {
+        .form-field-group.name-row {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+      }
+
+      /* ===== FORM LABELS ===== */
+      .form-label {
+        display: block;
+        color: var(--color-text);
+        font-weight: 600;
+        font-size: 0.9rem;
+        line-height: 1.3;
+        user-select: none;
+      }
+
+      .form-label .required {
+        color: var(--color-danger);
+        margin-left: 3px;
+      }
+
+      /* ===== INPUT WRAPPER (for password toggle) ===== */
+      .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      /* ===== TEXT & EMAIL INPUTS ===== */
+      .form-input {
+        width: 100%;
+        padding: var(--input-padding-mobile);
+        border: 1.5px solid var(--color-border);
+        border-radius: 8px;
+        background: var(--color-background);
+        color: var(--color-text);
+        font-size: 1rem;
+        line-height: 1.5;
+        font-family: inherit;
+        transition: all 0.2s ease;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+      }
+
+      @media (min-width: 640px) {
+        .form-input {
+          padding: var(--input-padding-desktop);
+        }
+      }
+
+      /* Input focus state */
+      .form-input:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 var(--focus-ring-offset) var(--color-primary-light);
+        background: var(--color-background);
+      }
+
+      /* Input hover state */
+      .form-input:hover:not(:focus) {
+        border-color: var(--color-text-light);
+      }
+
+      /* Input active/filled state */
+      .form-input:not(:placeholder-shown) {
+        background: var(--color-background);
+      }
+
+      /* ===== PASSWORD INPUT WITH TOGGLE ===== */
+      .password-field {
+        position: relative;
+      }
+
+      .password-input {
+        padding-right: 44px;
+      }
+
+      .password-toggle-btn {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--color-text-light);
+        cursor: pointer;
+        padding: 6px 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+        min-width: 36px;
+        min-height: 36px;
+      }
+
+      .password-toggle-btn:hover {
+        color: var(--color-text);
+        background: var(--color-border);
+      }
+
+      .password-toggle-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--color-primary-light);
+        color: var(--color-primary);
+      }
+
+      .password-toggle-btn:active {
+        transform: translateY(-50%) scale(0.95);
+      }
+
+      .password-toggle-btn svg {
+        width: 18px;
+        height: 18px;
+        stroke-width: 2;
+      }
+
+      /* ===== SELECT INPUT ===== */
+      .form-select {
+        width: 100%;
+        padding: var(--input-padding-mobile);
+        border: 1.5px solid var(--color-border);
+        border-radius: 8px;
+        background: var(--color-background);
+        color: var(--color-text);
+        font-size: 1rem;
+        line-height: 1.5;
+        font-family: inherit;
+        transition: all 0.2s ease;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 36px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .form-select {
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23aaa' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        }
+      }
+
+      @media (min-width: 640px) {
+        .form-select {
+          padding: var(--input-padding-desktop) var(--input-padding-desktop)
+            var(--input-padding-desktop) var(--input-padding-desktop);
+          padding-right: 36px;
+        }
+      }
+
+      .form-select:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 var(--focus-ring-offset) var(--color-primary-light);
+      }
+
+      .form-select:hover:not(:focus) {
+        border-color: var(--color-text-light);
+      }
+
+      .form-select option {
+        background: var(--color-surface);
+        color: var(--color-text);
+      }
+
+      /* ===== HELP TEXT ===== */
+      .form-helper-text {
+        color: var(--color-text-light);
+        font-size: 0.8rem;
+        line-height: 1.4;
+        margin: 2px 0 0 0;
+      }
+
+      .form-helper-text.error {
+        color: var(--color-danger);
+      }
+
+      /* ===== CHECKBOX/RADIO STYLING ===== */
+      .form-checkbox-group {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        cursor: pointer;
+      }
+
+      .form-checkbox-group input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        min-height: 20px;
+        margin-top: 2px;
+        cursor: pointer;
+        accent-color: var(--color-primary);
+      }
+
+      .form-checkbox-group label {
+        flex: 1;
+        cursor: pointer;
+        color: var(--color-text);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        user-select: none;
+      }
+
+      .form-checkbox-group a {
+        color: var(--color-primary);
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+      }
+
+      .form-checkbox-group a:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+      }
+
+      .form-checkbox-group a:focus {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+      }
+
+      /* ===== SUBMIT BUTTON ===== */
+      .submit-btn {
+        width: 100%;
+        padding: 12px 16px;
+        background: var(--color-primary);
+        color: var(--color-white);
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.4;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        outline: none;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 8px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .submit-btn:hover:not(:disabled) {
+        background: var(--color-primary-dark);
+        box-shadow: 0 6px 16px rgba(21, 101, 192, 0.15);
+        transform: translateY(-1px);
+      }
+
+      .submit-btn:active:not(:disabled) {
+        transform: translateY(0);
+      }
+
+      .submit-btn:focus:not(:disabled) {
+        box-shadow:
+          0 0 0 3px var(--color-primary-light),
+          0 6px 16px rgba(21, 101, 192, 0.15);
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      /* ===== SIGN IN LINK ===== */
+      .signin-link-section {
+        text-align: center;
+        margin-top: 24px;
+        color: var(--color-text-light);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .signin-link-section a {
+        color: var(--color-primary);
+        text-decoration: none;
+        font-weight: 600;
+        transition: opacity 0.2s ease;
+      }
+
+      .signin-link-section a:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+      }
+
+      .signin-link-section a:focus {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+        border-radius: 2px;
+      }
+
+      /* ===== BENEFITS SECTION ===== */
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      @media (max-width: 480px) {
+        .benefits-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+      }
+
+      .benefit-card {
+        text-align: center;
+        padding: 20px 16px;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .benefit-card:hover {
+        border-color: var(--color-primary);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      .benefit-icon {
+        font-size: 2rem;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .benefit-text {
+        color: var(--color-text-light);
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin: 0;
+      }
+
+      /* ===== RESPONSIVE TYPOGRAPHY ===== */
+      @media (max-width: 640px) {
+        .register-card {
+          border-radius: 8px;
+          padding: 24px 16px;
+        }
+
+        .register-header h1 {
+          font-size: 1.5rem;
+        }
+
+        .register-form {
+          gap: 16px;
+        }
+
+        .submit-btn {
+          font-size: 0.95rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .register-main {
+          padding: 16px 12px;
+          align-items: flex-start;
+          padding-top: 24px;
+        }
+
+        .register-card {
+          padding: 20px 16px;
+        }
+
+        .register-header h1 {
+          font-size: 1.4rem;
+          margin-bottom: 6px;
+        }
+
+        .register-header p {
+          font-size: 0.9rem;
+        }
+
+        .form-label {
+          font-size: 0.85rem;
+        }
+
+        .form-input,
+        .form-select {
+          font-size: 16px;
+        }
+      }
+
+      /* ===== DARK MODE ADJUSTMENTS ===== */
+      [data-theme="dark"] .password-toggle-btn:hover {
+        background: var(--color-border);
+      }
+
+      /* ===== PRINT STYLES ===== */
+      @media print {
+        .register-main {
+          padding: 0;
+        }
+
+        .register-card {
+          box-shadow: none;
+        }
+
+        .submit-btn {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+      LUX CHRISTI • APPLICATION HEADER
+      Purpose:
+      - Brand Identity
+      - Primary Navigation
+      - Theme Toggle
+      - Authentication
+      - Mobile Navigation
+    ========================================================== -->
+
+    <header class="header">
+      <nav class="navbar">
+        <!-- Brand Logo -->
+        <a href="index.html" class="logo">
+          <img src="assets/logo.jpg" alt="Lux Christi Logo" />
+          <span>Lux Christi</span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="menuToggle"
+          class="menu-toggle"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="navMenu"
+        >
+          <i data-lucide="menu" class="menu-icon"></i>
+          <i data-lucide="x" class="close-icon"></i>
+        </button>
+
+        <!-- Navigation Menu -->
+        <div class="nav-menu" id="navMenu">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html">
+                <i data-lucide="house"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="learn.html">
+                <i data-lucide="book-open"></i>
+                <span>Learn</span>
+              </a>
+            </li>
+            <li>
+              <a href="quiz.html">
+                <i data-lucide="circle-help"></i>
+                <span>Quiz</span>
+              </a>
+            </li>
+            <li>
+              <a href="community.html">
+                <i data-lucide="users"></i>
+                <span>Community</span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html">
+                <i data-lucide="info"></i>
+                <span>About</span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Action Buttons -->
+          <div class="nav-buttons">
+            <a href="login.html" class="login-btn">
+              <i data-lucide="log-in"></i>
+              <span>Login</span>
+            </a>
+            <a href="register.html" class="register-btn active">
+              <i data-lucide="user-plus"></i>
+              <span>Register</span>
+            </a>
+            <button
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Toggle dark mode"
+              title="Toggle dark mode"
+            >
+              <span class="theme-toggle-label"></span>
+              <i data-lucide="moon"></i>
+              <span class="theme-status-dot" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- =========================================================
+      MAIN CONTENT AREA
+      Production-grade registration form with full responsiveness
+    ========================================================== -->
+
+    <main class="register-main">
+      <div class="register-wrapper">
+        <!-- Registration Card -->
+        <div class="register-card">
+          <!-- Header Section -->
+          <div class="register-header">
+            <h1>Join Lux Christi</h1>
+            <p>Create your account and start your faith journey</p>
+          </div>
+
+          <!-- Registration Form -->
+          <form class="register-form" novalidate>
+            <!-- ===== NAME FIELDS (Two columns on desktop, one on mobile) ===== -->
+            <div class="form-field-group name-row">
+              <!-- First Name -->
+              <div class="form-field-group">
+                <label for="firstName" class="form-label">
+                  First Name
+                  <span class="required" aria-label="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  class="form-input"
+                  placeholder="John"
+                  required
+                  aria-required="true"
+                  autocomplete="given-name"
+                />
+              </div>
+
+              <!-- Last Name -->
+              <div class="form-field-group">
+                <label for="lastName" class="form-label">
+                  Last Name
+                  <span class="required" aria-label="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  class="form-input"
+                  placeholder="Doe"
+                  required
+                  aria-required="true"
+                  autocomplete="family-name"
+                />
+              </div>
+            </div>
+
+            <!-- ===== EMAIL FIELD ===== -->
+            <div class="form-field-group">
+              <label for="email" class="form-label">
+                Email Address
+                <span class="required" aria-label="required">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder="your@email.com"
+                required
+                aria-required="true"
+                autocomplete="email"
+              />
+            </div>
+
+            <!-- ===== PASSWORD FIELD WITH TOGGLE ===== -->
+            <div class="form-field-group">
+              <label for="password" class="form-label">
+                Password
+                <span class="required" aria-label="required">*</span>
+              </label>
+              <div class="input-wrapper password-field">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  class="form-input password-input"
+                  placeholder="••••••••"
+                  required
+                  aria-required="true"
+                  autocomplete="new-password"
+                  minlength="8"
+                />
+                <button
+                  type="button"
+                  class="password-toggle-btn"
+                  id="passwordToggle"
+                  aria-label="Toggle password visibility"
+                  title="Show/hide password"
+                  tabindex="0"
+                >
+                  <i data-lucide="eye-off"></i>
+                </button>
+              </div>
+              <p class="form-helper-text">Must be at least 8 characters</p>
+            </div>
+
+            <!-- ===== CONFIRM PASSWORD FIELD WITH TOGGLE ===== -->
+            <div class="form-field-group">
+              <label for="confirmPassword" class="form-label">
+                Confirm Password
+                <span class="required" aria-label="required">*</span>
+              </label>
+              <div class="input-wrapper password-field">
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  class="form-input password-input"
+                  placeholder="••••••••"
+                  required
+                  aria-required="true"
+                  autocomplete="new-password"
+                  minlength="8"
+                />
+                <button
+                  type="button"
+                  class="password-toggle-btn"
+                  id="confirmPasswordToggle"
+                  aria-label="Toggle confirm password visibility"
+                  title="Show/hide confirm password"
+                  tabindex="0"
+                >
+                  <i data-lucide="eye-off"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- ===== DIOCESE SELECTION ===== -->
+            <div class="form-field-group">
+              <label for="diocese" class="form-label">
+                Your Diocese
+                <span style="color: var(--color-text-light); font-weight: 400">
+                  (Optional)
+                </span>
+              </label>
+              <select
+                id="diocese"
+                name="diocese"
+                class="form-select"
+                autocomplete="off"
+              >
+                <option value="">Select your diocese</option>
+                <option value="diocese1">Diocese of Excellence</option>
+                <option value="diocese2">Diocese of Faith</option>
+                <option value="diocese3">Diocese of Hope</option>
+                <option value="diocese4">Diocese of Light</option>
+              </select>
+            </div>
+
+            <!-- ===== TERMS & CONDITIONS CHECKBOX ===== -->
+            <div class="form-checkbox-group">
+              <input
+                type="checkbox"
+                id="terms"
+                name="terms"
+                required
+                aria-required="true"
+              />
+              <label for="terms">
+                I agree to the
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Terms of Service
+                </a>
+                and
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Privacy Policy
+                </a>
+              </label>
+            </div>
+
+            <!-- ===== NEWSLETTER OPT-IN CHECKBOX ===== -->
+            <div class="form-checkbox-group">
+              <input type="checkbox" id="newsletter" name="newsletter" />
+              <label for="newsletter">
+                Keep me updated with news and updates
+              </label>
+            </div>
+
+            <!-- ===== SUBMIT BUTTON ===== -->
+            <button type="submit" class="submit-btn">Create Account</button>
+          </form>
+
+          <!-- Sign In Link -->
+          <div class="signin-link-section">
+            Already have an account?
+            <a href="login.html">Sign in here</a>
+          </div>
+        </div>
+
+        <!-- ===== BENEFITS SECTION (Below form) ===== -->
+        <div class="benefits-grid">
+          <!-- Benefit 1 -->
+          <div class="benefit-card">
+            <div class="benefit-icon">🎓</div>
+            <p class="benefit-text">Access exclusive learning content</p>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="benefit-card">
+            <div class="benefit-icon">🏆</div>
+            <p class="benefit-text">Compete and earn achievements</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/navbar.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="js/theme.js"></script>
+
+    <!-- ===== PASSWORD VISIBILITY TOGGLE SCRIPT ===== -->
+    <script>
+      // Initialize password visibility toggles
+      function initPasswordToggle(inputId, buttonId) {
+        const input = document.getElementById(inputId);
+        const button = document.getElementById(buttonId);
+
+        if (!input || !button) return;
+
+        // Initial state
+        let isPasswordVisible = false;
+
+        // Toggle password visibility
+        function togglePasswordVisibility() {
+          isPasswordVisible = !isPasswordVisible;
+
+          if (isPasswordVisible) {
+            input.type = "text";
+            button.setAttribute("aria-label", "Hide password");
+            button.title = "Hide password";
+            // Update Lucide icon
+            const icon = button.querySelector("i[data-lucide]");
+            if (icon) {
+              icon.setAttribute("data-lucide", "eye");
+            }
+          } else {
+            input.type = "password";
+            button.setAttribute("aria-label", "Show password");
+            button.title = "Show password";
+            // Update Lucide icon
+            const icon = button.querySelector("i[data-lucide]");
+            if (icon) {
+              icon.setAttribute("data-lucide", "eye-off");
+            }
+          }
+
+          // Refresh Lucide icons
+          lucide.createIcons();
+
+          // Refocus input after toggle
+          input.focus();
+        }
+
+        // Click event
+        button.addEventListener("click", (e) => {
+          e.preventDefault();
+          togglePasswordVisibility();
+        });
+
+        // Keyboard support (Space/Enter)
+        button.addEventListener("keydown", (e) => {
+          if (e.key === " " || e.key === "Enter") {
+            e.preventDefault();
+            togglePasswordVisibility();
+          }
+        });
+      }
+
+      // Initialize both password toggles
+      initPasswordToggle("password", "passwordToggle");
+      initPasswordToggle("confirmPassword", "confirmPasswordToggle");
+
+      // ===== FORM VALIDATION & SUBMISSION =====
+      const form = document.querySelector(".register-form");
+      if (form) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Validate password match
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+          if (password !== confirmPassword) {
+            alert("Passwords do not match. Please try again.");
+            return;
+          }
+
+          // Validate password length
+          if (password.length < 8) {
+            alert("Password must be at least 8 characters long.");
+            return;
+          }
+
+          // Validate terms acceptance
+          const terms = document.getElementById("terms").checked;
+          if (!terms) {
+            alert("You must accept the Terms of Service and Privacy Policy.");
+            return;
+          }
+
+          // TODO: Send form data to backend API
+          // For now, show success message
+          alert(
+            "Account created successfully! (Development mode - no backend yet)",
+          );
+
+          // Optionally redirect to login after successful registration
+          // window.location.href = 'login.html';
+        });
+      }
+    </script>
+  </body>
+</html>
